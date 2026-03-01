@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Check, Star, Sparkles } from "lucide-react";
+import { Check, Info, Star, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { useBookingDialog } from "@/components/booking/BookingDialogProvider";
 
 type Package = {
   id: string;
@@ -8,6 +9,7 @@ type Package = {
   subtitle: string;
   levels: string;
   group?: string;
+  extraInfo?: { title: string; description: string };
   standard: { rules: string[]; prices: { label: string; price: string }[] };
   premium: { rules: string[]; prices: { label: string; price: string }[] };
 };
@@ -19,6 +21,11 @@ const packages: Package[] = [
     subtitle: "Системне навчання: граматика + лексика + говоріння",
     levels: "A1 / A2 / B1 / B2",
     group: "6–10 осіб",
+    extraInfo: {
+      title: "Групові заняття",
+      description:
+        "Уроки проходять у мінігрупах одного рівня, де учні разом вивчають теми, виконують завдання й активно практикують мовлення. Такий формат створює живу атмосферу спілкування, допомагає швидше звикнути до мови та підтримує мотивацію завдяки спільному навчанню.",
+    },
     standard: {
       rules: ["Відміна: мінімум за 8 годин", "Не можна переносити заняття на новий місяць"],
       prices: [
@@ -40,6 +47,11 @@ const packages: Package[] = [
     subtitle: "Жива практика мови, мінімум теорії",
     levels: "A2 / B1 / B2",
     group: "4–8 осіб",
+    extraInfo: {
+      title: "Розмовні заняття (Speaking Club)",
+      description:
+        "Формат живої мовної практики через обговорення, запитання, діалоги та ігрові ситуації. Заняття спрямовані на розвиток упевненості в мовленні, подолання мовного барʼєра та вміння вільно висловлювати думки без акценту на складній теорії.",
+    },
     standard: {
       rules: ["Відміна: за 8 годин", "Не можна переносити заняття на новий місяць"],
       prices: [
@@ -60,6 +72,11 @@ const packages: Package[] = [
     title: "Індивідуально — діти",
     subtitle: "Персональний темп, ігрове навчання",
     levels: "A1 / A2 / B1",
+    extraInfo: {
+      title: "Індивідуальні заняття для дітей",
+      description:
+        "Заняття проходять у дружній ігровій формі з використанням карток, інтерактивних завдань, візуальних матеріалів і розмовної практики. Уроки допомагають дитині поступово звикнути до мови, розширити словниковий запас і навчитися використовувати її природно та без страху.",
+    },
     standard: {
       rules: ["2 екстрених переноси/місяць", "Відміна: за 8 годин", "Не можна переносити на новий місяць"],
       prices: [{ label: "A1–A2–B1", price: "600 грн" }],
@@ -74,6 +91,11 @@ const packages: Package[] = [
     title: "Індивідуально — дорослі",
     subtitle: "Навчання під цілі: робота, переїзд, іспити",
     levels: "A1 / A2 / B1 / B2 / C1",
+    extraInfo: {
+      title: "Індивідуальні заняття для дорослих",
+      description:
+        "Уроки проходять у форматі персональної роботи з викладачем і будуються навколо цілей учня: робота, переїзд, іспити або розмовна практика. На заняттях поєднуються пояснення матеріалу, вправи й активна мовна практика, щоб мова одразу переходила в навичку.",
+    },
     standard: {
       rules: ["Відміна: за 8 годин", "Не можна переносити заняття на новий місяць"],
       prices: [
@@ -102,6 +124,8 @@ const cardVariants = {
 
 const PricingSection = () => {
   const [activeTab, setActiveTab] = useState<"standard" | "premium">("standard");
+  const [flippedCardId, setFlippedCardId] = useState<string | null>(null);
+  const { openBooking } = useBookingDialog();
 
   return (
     <section id="pricing" className="py-20 md:py-28 bg-card/50">
@@ -142,9 +166,15 @@ const PricingSection = () => {
           </button>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid items-stretch gap-5 md:grid-cols-2">
           {packages.map((pkg, i) => {
             const plan = activeTab === "standard" ? pkg.standard : pkg.premium;
+            const isFlipped = flippedCardId === pkg.id;
+            const cardClassName = `rounded-3xl border p-7 transition-all duration-300 ${
+              activeTab === "premium"
+                ? "border-premium/30 bg-gradient-to-br from-premium/[0.03] to-transparent shadow-sm"
+                : "bg-card border-border/50 hover:border-border"
+            }`;
             return (
               <motion.div
                 key={pkg.id}
@@ -153,49 +183,84 @@ const PricingSection = () => {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-40px" }}
                 variants={cardVariants}
-                className={`rounded-3xl border p-7 transition-all duration-300 ${
-                  activeTab === "premium"
-                    ? "border-premium/30 bg-gradient-to-br from-premium/[0.03] to-transparent shadow-sm"
-                    : "bg-card border-border/50 hover:border-border"
-                }`}
+                className="relative h-full"
               >
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-lg font-bold">{pkg.title}</h3>
-                  {activeTab === "premium" && (
-                    <span className="flex items-center gap-1 rounded-full bg-premium/10 px-2.5 py-1 text-xs font-semibold text-premium">
-                      <Star size={12} /> Premium
-                    </span>
-                  )}
-                </div>
-                <p className="text-sm text-muted-foreground mb-3">{pkg.subtitle}</p>
-                <div className="flex flex-wrap gap-2 mb-5">
-                  <span className="text-xs bg-accent/60 text-accent-foreground rounded-full px-3 py-1 font-medium">{pkg.levels}</span>
-                  {pkg.group && (
-                    <span className="text-xs bg-secondary/60 text-secondary-foreground rounded-full px-3 py-1 font-medium">{pkg.group}</span>
-                  )}
-                </div>
-
-                {/* Rules */}
-                <ul className="space-y-2 mb-6">
-                  {plan.rules.map((r) => (
-                    <li key={r} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                      <Check size={15} className="text-primary mt-0.5 shrink-0" />
-                      {r}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Prices */}
-                <div className="space-y-2">
-                  {plan.prices.map((p) => (
-                    <div
-                      key={p.label}
-                      className="flex items-center justify-between rounded-2xl bg-accent/20 px-5 py-3"
+                <div className={pkg.extraInfo ? "relative h-full [perspective:1200px]" : "h-full"}>
+                  {pkg.extraInfo && (
+                    <button
+                      type="button"
+                      onClick={() => setFlippedCardId(isFlipped ? null : pkg.id)}
+                      className="absolute right-4 top-4 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-accent/80 text-muted-foreground transition-colors hover:text-foreground"
+                      aria-label={isFlipped ? "Показати деталі тарифу" : "Показати додаткову інформацію"}
                     >
-                      <span className="text-sm font-medium">{p.label}</span>
-                      <span className="text-lg font-bold text-primary">{p.price}</span>
+                      <Info size={16} />
+                    </button>
+                  )}
+
+                  <div
+                    className={
+                      pkg.extraInfo
+                        ? `relative h-full transition-transform duration-700 [transform-style:preserve-3d] ${isFlipped ? "[transform:rotateY(180deg)]" : ""}`
+                        : "h-full"
+                    }
+                  >
+                    <div className={`${cardClassName} flex h-full flex-col ${pkg.extraInfo ? "[backface-visibility:hidden]" : ""}`}>
+                      <div className="flex items-start justify-between mb-2 pr-10">
+                        <h3 className="text-lg font-bold">{pkg.title}</h3>
+                        {activeTab === "premium" && (
+                          <span className="flex items-center gap-1 rounded-full bg-premium/10 px-2.5 py-1 text-xs font-semibold text-premium">
+                            <Star size={12} /> Premium
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-3">{pkg.subtitle}</p>
+                      <div className="flex flex-wrap gap-2 mb-5">
+                        <span className="text-xs bg-accent/60 text-accent-foreground rounded-full px-3 py-1 font-medium">{pkg.levels}</span>
+                        {pkg.group && (
+                          <span className="text-xs bg-secondary/60 text-secondary-foreground rounded-full px-3 py-1 font-medium">{pkg.group}</span>
+                        )}
+                      </div>
+
+                      {/* Rules */}
+                      <ul className="mb-6 min-h-[96px] space-y-2">
+                        {plan.rules.map((r) => (
+                          <li key={r} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                            <Check size={15} className="text-primary mt-0.5 shrink-0" />
+                            {r}
+                          </li>
+                        ))}
+                      </ul>
+
+                      {/* Prices */}
+                      <div className="mt-auto min-h-[112px] space-y-2">
+                        {plan.prices.map((p) => (
+                          <div
+                            key={p.label}
+                            className="flex items-center justify-between rounded-2xl bg-accent/20 px-5 py-3"
+                          >
+                            <span className="text-sm font-medium">{p.label}</span>
+                            <span className="text-lg font-bold text-primary">{p.price}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  ))}
+
+                    {pkg.extraInfo && (
+                      <div className={`absolute inset-0 ${cardClassName} [transform:rotateY(180deg)] [backface-visibility:hidden]`}>
+                        <div className="flex h-full flex-col">
+                          <h4 className="mb-3 text-lg font-bold">{pkg.extraInfo.title}</h4>
+                          <p className="text-sm leading-relaxed text-muted-foreground">{pkg.extraInfo.description}</p>
+                          <button
+                            type="button"
+                            onClick={openBooking}
+                            className="mt-5 w-full rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                          >
+                            Записатися на безкоштовний пробний урок
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             );

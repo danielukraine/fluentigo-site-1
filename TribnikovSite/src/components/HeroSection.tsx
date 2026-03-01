@@ -1,11 +1,14 @@
-import { BookOpen, Users, Zap, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { BookOpen, Users, Zap, ArrowRight, ListChecks } from "lucide-react";
 import { motion } from "framer-motion";
 import { useBookingDialog } from "@/components/booking/BookingDialogProvider";
+import { LanguageLevelDialog } from "@/components/LanguageLevelDialog";
 
 const steps = [
-  { icon: BookOpen, title: "Обери викладача", desc: "під твою ціль і стиль" },
-  { icon: Users, title: "Пакети", desc: "план + регулярність" },
-  { icon: Zap, title: "Підбір за 60 сек", desc: "або менеджер допоможе" },
+  { id: "teachers", icon: BookOpen, title: "Обери викладача", desc: "під твою ціль і стиль" },
+  { id: "packages", icon: Users, title: "Пакети", desc: "план + регулярність" },
+  { id: "quick-match", icon: Zap, title: "Підбір за 60 сек", desc: "або менеджер допоможе" },
+  { id: "level-test", icon: ListChecks, title: "Визнач свій рівень мови", desc: "короткий тест за 1–2 хв" },
 ];
 
 const fadeUp = {
@@ -15,6 +18,7 @@ const fadeUp = {
 
 const HeroSection = () => {
   const { openBooking } = useBookingDialog();
+  const [levelDialogOpen, setLevelDialogOpen] = useState(false);
 
   return (
   <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32">
@@ -32,7 +36,7 @@ const HeroSection = () => {
             transition={{ duration: 0.4 }}
             className="inline-flex gap-2 rounded-full bg-accent/60 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold text-accent-foreground ring-1 ring-accent-foreground/10"
           >
-            🇩🇪 Німецька &nbsp;·&nbsp; 🇬🇧 Англійська &nbsp;·&nbsp; 🇫🇷 Французька
+            🇪🇸 Іспанська &nbsp;·&nbsp; 🇩🇪 Німецька &nbsp;·&nbsp; 🇬🇧 Англійська &nbsp;·&nbsp; 🇫🇷 Французька
           </motion.div>
 
           <motion.h1
@@ -82,22 +86,43 @@ const HeroSection = () => {
             </a>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4">
+          <div className="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2">
             {steps.map((s, i) => (
               <motion.div
-                key={s.title}
+                key={s.id}
                 custom={i}
                 initial="hidden"
                 animate="visible"
                 variants={fadeUp}
-                className="flex items-start gap-3 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50 p-4 hover:border-primary/20 hover:shadow-sm transition-all"
+                className="h-full rounded-2xl border border-border/50 bg-card/80 p-5 backdrop-blur-sm transition-all hover:border-primary/20 hover:shadow-sm"
               >
-                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 shrink-0">
-                  <s.icon size={18} className="text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold">{s.title}</p>
-                  <p className="text-xs text-muted-foreground">{s.desc}</p>
+                <div className="flex h-full min-h-[122px] flex-col">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                      <s.icon size={18} className="text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-[1.35rem] font-bold leading-tight">{s.title}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
+                    </div>
+                  </div>
+                  {s.id === "teachers" && (
+                    <a
+                      href="#teachers"
+                      className="mt-auto pt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-opacity hover:opacity-80"
+                    >
+                      Переглянути викладачів <ArrowRight size={14} />
+                    </a>
+                  )}
+                  {s.id === "level-test" && (
+                    <button
+                      type="button"
+                      onClick={() => setLevelDialogOpen(true)}
+                      className="mt-auto pt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-opacity hover:opacity-80"
+                    >
+                      Почати тест рівня <ArrowRight size={14} />
+                    </button>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -134,6 +159,7 @@ const HeroSection = () => {
         </motion.div>
       </div>
     </div>
+    <LanguageLevelDialog open={levelDialogOpen} onOpenChange={setLevelDialogOpen} />
   </section>
   );
 };

@@ -1,0 +1,298 @@
+{
+  "languages": [
+    { "id": "en", "title": "English", "badge": "🇬🇧" },
+    { "id": "es", "title": "Spanish", "badge": "🇪🇸" },
+    { "id": "de", "title": "German", "badge": "🇩🇪" },
+    { "id": "fr", "title": "French", "badge": "🇫🇷" }
+  ],
+  "tests": {
+    "en": {
+      "title": "English Placement Test",
+      "thresholds": [
+        { "level": "A1", "minCorrect": 0 },
+        { "level": "A2", "minCorrect": 2 },
+        { "level": "B1", "minCorrect": 4 },
+        { "level": "B2", "minCorrect": 5 },
+        { "level": "C1", "minCorrect": 6 }
+      ],
+      "questions": [
+        {
+          "id": "en-1",
+          "prompt": "Choose the correct sentence:",
+          "options": [
+            { "id": "a", "text": "She go to work every day." },
+            { "id": "b", "text": "She goes to work every day." },
+            { "id": "c", "text": "She going to work every day." }
+          ],
+          "correctOptionId": "b"
+        },
+        {
+          "id": "en-2",
+          "prompt": "I ___ in Vienna since 2021.",
+          "options": [
+            { "id": "a", "text": "live" },
+            { "id": "b", "text": "lived" },
+            { "id": "c", "text": "have lived" }
+          ],
+          "correctOptionId": "c"
+        },
+        {
+          "id": "en-3",
+          "prompt": "Which word is closest to 'rapid'?",
+          "options": [
+            { "id": "a", "text": "fast" },
+            { "id": "b", "text": "late" },
+            { "id": "c", "text": "weak" }
+          ],
+          "correctOptionId": "a"
+        },
+        {
+          "id": "en-4",
+          "prompt": "If I ___ more time, I would travel more.",
+          "options": [
+            { "id": "a", "text": "have" },
+            { "id": "b", "text": "had" },
+            { "id": "c", "text": "will have" }
+          ],
+          "correctOptionId": "b"
+        },
+        {
+          "id": "en-5",
+          "prompt": "By next year, they ___ the project.",
+          "options": [
+            { "id": "a", "text": "will finish" },
+            { "id": "b", "text": "will have finished" },
+            { "id": "c", "text": "finished" }
+          ],
+          "correctOptionId": "b"
+        },
+        {
+          "id": "en-6",
+          "prompt": "Choose the best connector: It was raining, ___ we went for a walk.",
+          "options": [
+            { "id": "a", "text": "although" },
+            { "id": "b", "text": "because" },
+            { "id": "c", "text": "so" }
+          ],
+          "correctOptionId": "a"
+        }
+      ]
+    },
+    "es": {
+      "title": "Spanish Placement Test",
+      "thresholds": [
+        { "level": "A1", "minCorrect": 0 },
+        { "level": "A2", "minCorrect": 2 },
+        { "level": "B1", "minCorrect": 4 },
+        { "level": "B2", "minCorrect": 5 },
+        { "level": "C1", "minCorrect": 6 }
+      ],
+      "questions": [
+        {
+          "id": "es-1",
+          "prompt": "Yo ___ en Madrid.",
+          "options": [
+            { "id": "a", "text": "vive" },
+            { "id": "b", "text": "vivo" },
+            { "id": "c", "text": "viven" }
+          ],
+          "correctOptionId": "b"
+        },
+        {
+          "id": "es-2",
+          "prompt": "¿___ llamas?",
+          "options": [
+            { "id": "a", "text": "Cómo te" },
+            { "id": "b", "text": "Qué te" },
+            { "id": "c", "text": "Cuándo te" }
+          ],
+          "correctOptionId": "a"
+        },
+        {
+          "id": "es-3",
+          "prompt": "Mañana ___ al trabajo.",
+          "options": [
+            { "id": "a", "text": "voy" },
+            { "id": "b", "text": "fui" },
+            { "id": "c", "text": "iba" }
+          ],
+          "correctOptionId": "a"
+        },
+        {
+          "id": "es-4",
+          "prompt": "Si tuviera tiempo, ___ más.",
+          "options": [
+            { "id": "a", "text": "viajaría" },
+            { "id": "b", "text": "viajaré" },
+            { "id": "c", "text": "viajaba" }
+          ],
+          "correctOptionId": "a"
+        },
+        {
+          "id": "es-5",
+          "prompt": "Cuando llegué, ellos ya ___.",
+          "options": [
+            { "id": "a", "text": "se fueron" },
+            { "id": "b", "text": "se habían ido" },
+            { "id": "c", "text": "se irán" }
+          ],
+          "correctOptionId": "b"
+        },
+        {
+          "id": "es-6",
+          "prompt": "Elige la opción correcta: No creo que él ___ razón.",
+          "options": [
+            { "id": "a", "text": "tiene" },
+            { "id": "b", "text": "tenga" },
+            { "id": "c", "text": "tenía" }
+          ],
+          "correctOptionId": "b"
+        }
+      ]
+    },
+    "de": {
+      "title": "German Placement Test",
+      "thresholds": [
+        { "level": "A1", "minCorrect": 0 },
+        { "level": "A2", "minCorrect": 2 },
+        { "level": "B1", "minCorrect": 4 },
+        { "level": "B2", "minCorrect": 5 },
+        { "level": "C1", "minCorrect": 6 }
+      ],
+      "questions": [
+        {
+          "id": "de-1",
+          "prompt": "Ich ___ aus Österreich.",
+          "options": [
+            { "id": "a", "text": "komme" },
+            { "id": "b", "text": "kommt" },
+            { "id": "c", "text": "kommst" }
+          ],
+          "correctOptionId": "a"
+        },
+        {
+          "id": "de-2",
+          "prompt": "Wir ___ heute keine Zeit.",
+          "options": [
+            { "id": "a", "text": "hast" },
+            { "id": "b", "text": "haben" },
+            { "id": "c", "text": "hat" }
+          ],
+          "correctOptionId": "b"
+        },
+        {
+          "id": "de-3",
+          "prompt": "Morgen ___ ich meine Oma besuchen.",
+          "options": [
+            { "id": "a", "text": "wird" },
+            { "id": "b", "text": "werde" },
+            { "id": "c", "text": "wirst" }
+          ],
+          "correctOptionId": "b"
+        },
+        {
+          "id": "de-4",
+          "prompt": "Wenn ich mehr Geld hätte, ___ ich reisen.",
+          "options": [
+            { "id": "a", "text": "würde" },
+            { "id": "b", "text": "werde" },
+            { "id": "c", "text": "wurde" }
+          ],
+          "correctOptionId": "a"
+        },
+        {
+          "id": "de-5",
+          "prompt": "Er sagte, dass er gestern nicht ___ konnte.",
+          "options": [
+            { "id": "a", "text": "kommen" },
+            { "id": "b", "text": "gekommen" },
+            { "id": "c", "text": "kommt" }
+          ],
+          "correctOptionId": "a"
+        },
+        {
+          "id": "de-6",
+          "prompt": "Wähle die richtige Form: Das ist der Mann, ___ Auto gestohlen wurde.",
+          "options": [
+            { "id": "a", "text": "dessen" },
+            { "id": "b", "text": "deren" },
+            { "id": "c", "text": "dem" }
+          ],
+          "correctOptionId": "a"
+        }
+      ]
+    },
+    "fr": {
+      "title": "French Placement Test",
+      "thresholds": [
+        { "level": "A1", "minCorrect": 0 },
+        { "level": "A2", "minCorrect": 2 },
+        { "level": "B1", "minCorrect": 4 },
+        { "level": "B2", "minCorrect": 5 },
+        { "level": "C1", "minCorrect": 6 }
+      ],
+      "questions": [
+        {
+          "id": "fr-1",
+          "prompt": "Je ___ à Paris.",
+          "options": [
+            { "id": "a", "text": "habites" },
+            { "id": "b", "text": "habite" },
+            { "id": "c", "text": "habitent" }
+          ],
+          "correctOptionId": "b"
+        },
+        {
+          "id": "fr-2",
+          "prompt": "Nous ___ français.",
+          "options": [
+            { "id": "a", "text": "parlons" },
+            { "id": "b", "text": "parlez" },
+            { "id": "c", "text": "parle" }
+          ],
+          "correctOptionId": "a"
+        },
+        {
+          "id": "fr-3",
+          "prompt": "Demain, je ___ au bureau.",
+          "options": [
+            { "id": "a", "text": "vais" },
+            { "id": "b", "text": "suis allé" },
+            { "id": "c", "text": "allais" }
+          ],
+          "correctOptionId": "a"
+        },
+        {
+          "id": "fr-4",
+          "prompt": "Si j'avais du temps, je ___ plus.",
+          "options": [
+            { "id": "a", "text": "voyagerais" },
+            { "id": "b", "text": "voyage" },
+            { "id": "c", "text": "voyagerai" }
+          ],
+          "correctOptionId": "a"
+        },
+        {
+          "id": "fr-5",
+          "prompt": "Quand je suis arrivé, ils étaient déjà ___.",
+          "options": [
+            { "id": "a", "text": "partent" },
+            { "id": "b", "text": "partis" },
+            { "id": "c", "text": "partiraient" }
+          ],
+          "correctOptionId": "b"
+        },
+        {
+          "id": "fr-6",
+          "prompt": "Choisissez: Il faut que tu ___ plus souvent.",
+          "options": [
+            { "id": "a", "text": "viens" },
+            { "id": "b", "text": "viennes" },
+            { "id": "c", "text": "viendras" }
+          ],
+          "correctOptionId": "b"
+        }
+      ]
+    }
+  }
+}

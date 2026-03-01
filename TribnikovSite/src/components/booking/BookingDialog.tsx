@@ -18,24 +18,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogClose, DialogOverlay, DialogPortal } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { MANAGER_TELEGRAM_URL } from "@/config/contact";
+import { languageOptions as languages, teachers, type GoalId, type LanguageId, type Teacher } from "@/data/teachers";
 
 type BookingScreen = "entry" | "wizard" | "manager";
-
-type LanguageId = "de" | "en" | "fr";
-type GoalId = "work" | "move" | "exam" | "life";
-type TeacherId = "anna" | "oleh" | "maria";
 
 type BookingState = {
   language?: LanguageId;
   goal?: GoalId;
-  teacher?: TeacherId;
+  teacher?: string;
 };
-
-const languages: Array<{ id: LanguageId; title: string; desc: string; badge: string }> = [
-  { id: "de", title: "Німецька", desc: "Для роботи, навчання, інтеграції", badge: "🇩🇪" },
-  { id: "en", title: "Англійська", desc: "Speaking, робота, міжнародне середовище", badge: "🇬🇧" },
-  { id: "fr", title: "Французька", desc: "З нуля або для життя/подорожей", badge: "🇫🇷" },
-];
 
 const goals: Array<{ id: GoalId; title: string; desc: string; icon: React.ElementType }> = [
   { id: "work", title: "Робота", desc: "співбесіди, дзвінки, листування", icon: Briefcase },
@@ -44,49 +35,6 @@ const goals: Array<{ id: GoalId; title: string; desc: string; icon: React.Elemen
   { id: "life", title: "Для життя", desc: "подорожі, хобі, комфорт", icon: Heart },
 ];
 
-type Teacher = {
-  id: TeacherId;
-  name: string;
-  headline: string;
-  desc: string;
-  imageUrl: string;
-  tags: string[];
-  languages: LanguageId[];
-  goals: GoalId[];
-};
-
-const teachers: Teacher[] = [
-  {
-    id: "anna",
-    name: "Анна Коваль",
-    headline: "Німецька • інтеграція та робота",
-    desc: "Спокійний темп, чіткий план, багато говоріння.",
-    imageUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=256&h=256&q=80",
-    tags: ["5+ років", "A1–B2", "говоріння"],
-    languages: ["de"],
-    goals: ["move", "work"],
-  },
-  {
-    id: "oleh",
-    name: "Олег Мельник",
-    headline: "Англійська • speaking та робота",
-    desc: "Живі діалоги, впевненість у розмові, вимова.",
-    imageUrl: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=256&h=256&q=80",
-    tags: ["4+ роки", "Speaking", "інтервʼю"],
-    languages: ["en"],
-    goals: ["work", "exam", "life"],
-  },
-  {
-    id: "maria",
-    name: "Марія Петренко",
-    headline: "Французька • з нуля / для життя",
-    desc: "Мʼякий старт, зрозуміла граматика, практика.",
-    imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=256&h=256&q=80",
-    tags: ["3+ роки", "з нуля", "подорожі"],
-    languages: ["fr"],
-    goals: ["life", "move"],
-  },
-];
 
 function labelById<T extends { id: string; title: string }>(list: T[], id?: string) {
   if (!id) return undefined;
@@ -465,7 +413,7 @@ export function BookingDialog({
                           <h3 className="mt-2 text-lg md:text-xl font-extrabold tracking-tight">Обери мову</h3>
                         </div>
 
-                        <div className="grid gap-3 md:grid-cols-3">
+                        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
                           {languages.map((l) => (
                             <ChoiceCard
                               key={l.id}
@@ -514,8 +462,15 @@ export function BookingDialog({
                           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">Викладач</p>
                           <h3 className="mt-2 text-lg md:text-xl font-extrabold tracking-tight">Обери викладача</h3>
                           <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                            Поки що — 3 варіанти для старту. Потім можна розширити список і додати сторінки викладачів.
+                            Доступно {teachers.length} варіантів. Обери того, хто найкраще підходить під твою ціль.
                           </p>
+                          <a
+                            href="#teachers"
+                            onClick={() => onOpenChange(false)}
+                            className="mt-3 inline-flex items-center gap-2 rounded-xl border border-border/60 bg-background/60 px-3 py-2 text-xs font-semibold text-foreground transition-colors hover:bg-accent/40"
+                          >
+                            Show all teachers <ArrowRight className="h-3.5 w-3.5" />
+                          </a>
                         </div>
 
                         <div className="grid gap-3 md:grid-cols-3">
@@ -596,5 +551,3 @@ export function BookingDialog({
     </Dialog>
   );
 }
-
-

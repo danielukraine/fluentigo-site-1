@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import TeachersCatalogSection from "@/components/TeachersCatalogSection";
 import FormatsSection from "@/components/FormatsSection";
 import PricingSection from "@/components/PricingSection";
 import WhySection from "@/components/WhySection";
@@ -17,6 +18,7 @@ const Index = () => (
     <FAQSection />
     <CTASection />
     <Footer />
+    <TeachersCatalogSection />
   </div>
 );
 

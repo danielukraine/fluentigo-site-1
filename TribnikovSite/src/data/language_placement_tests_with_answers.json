@@ -1,0 +1,902 @@
+{
+  "spanish": {
+    "test_name": "Test de nivel – Español (A1 → C1)",
+    "questions": {
+      "1": {
+        "level": "A1",
+        "prompt": "Completa: Yo ___ de Bakú.",
+        "options": {
+          "A": "soy",
+          "B": "estoy",
+          "C": "tengo",
+          "D": "hay"
+        },
+        "answer": "A"
+      },
+      "2": {
+        "level": "A1",
+        "prompt": "Artículo correcto: ___ problema es serio.",
+        "options": {
+          "A": "La",
+          "B": "El",
+          "C": "Los",
+          "D": "Un"
+        },
+        "answer": "B"
+      },
+      "3": {
+        "level": "A1",
+        "prompt": "Verbo “tener” (edad): Ella ___ 20 años.",
+        "options": {
+          "A": "es",
+          "B": "está",
+          "C": "tiene",
+          "D": "hay"
+        },
+        "answer": "C"
+      },
+      "4": {
+        "level": "A1",
+        "prompt": "Gustar: A mí ___ el café.",
+        "options": {
+          "A": "gusto",
+          "B": "gustan",
+          "C": "gusta",
+          "D": "gustas"
+        },
+        "answer": "C"
+      },
+      "5": {
+        "level": "A2",
+        "prompt": "Pretérito indefinido: Ayer ___ al médico.",
+        "options": {
+          "A": "voy",
+          "B": "fui",
+          "C": "he ido",
+          "D": "iba"
+        },
+        "answer": "B"
+      },
+      "6": {
+        "level": "A2",
+        "prompt": "Ser/estar (significado): La puerta ___ abierta.",
+        "options": {
+          "A": "es",
+          "B": "está",
+          "C": "son",
+          "D": "está siendo"
+        },
+        "answer": "B"
+      },
+      "7": {
+        "level": "A2",
+        "prompt": "Pronombres de objeto (lo/la): ¿Has visto la película? Sí, ___ he visto.",
+        "options": {
+          "A": "la",
+          "B": "lo",
+          "C": "le",
+          "D": "se"
+        },
+        "answer": "A"
+      },
+      "8": {
+        "level": "A2",
+        "prompt": "Perífrasis “ir a” (futuro): Este fin de semana ___ viajar.",
+        "options": {
+          "A": "voy a",
+          "B": "voy",
+          "C": "iré a",
+          "D": "estoy a"
+        },
+        "answer": "A"
+      },
+      "9": {
+        "level": "B1",
+        "prompt": "Pretérito perfecto vs indefinido: Esta semana ___ tres reuniones.",
+        "options": {
+          "A": "tuve",
+          "B": "he tenido",
+          "C": "tenía",
+          "D": "tendré"
+        },
+        "answer": "B"
+      },
+      "10": {
+        "level": "B1",
+        "prompt": "Subjuntivo (deseo): Espero que ___ bien.",
+        "options": {
+          "A": "estás",
+          "B": "estar",
+          "C": "estés",
+          "D": "estuviste"
+        },
+        "answer": "C"
+      },
+      "11": {
+        "level": "B1",
+        "prompt": "Por/para: Lo hice ___ ti. (en tu beneficio)",
+        "options": {
+          "A": "por",
+          "B": "para",
+          "C": "a",
+          "D": "de"
+        },
+        "answer": "B"
+      },
+      "12": {
+        "level": "B1",
+        "prompt": "Condicional (hipótesis): Yo ___ más si tuviera tiempo.",
+        "options": {
+          "A": "estudio",
+          "B": "estudié",
+          "C": "estudiaría",
+          "D": "estudiaré"
+        },
+        "answer": "C"
+      },
+      "13": {
+        "level": "B2",
+        "prompt": "Subjuntivo vs indicativo (opinión/certeza): No creo que él ___ la verdad.",
+        "options": {
+          "A": "dice",
+          "B": "dijo",
+          "C": "diga",
+          "D": "dirá"
+        },
+        "answer": "C"
+      },
+      "14": {
+        "level": "B2",
+        "prompt": "Estilo indirecto (concordancia): Dijo que no ___ venir al día siguiente.",
+        "options": {
+          "A": "puede",
+          "B": "podía",
+          "C": "podrá",
+          "D": "pudo"
+        },
+        "answer": "B"
+      },
+      "15": {
+        "level": "B2",
+        "prompt": "Pasiva refleja / “se”: En este país ___ mucho café.",
+        "options": {
+          "A": "se bebe",
+          "B": "se beben",
+          "C": "es bebido",
+          "D": "bebido se"
+        },
+        "answer": "A"
+      },
+      "16": {
+        "level": "B2",
+        "prompt": "Clíticos (se lo / se la): Voy a dar el informe a Marta → Se ___ voy a dar.",
+        "options": {
+          "A": "lo",
+          "B": "la",
+          "C": "le",
+          "D": "se"
+        },
+        "answer": "A"
+      },
+      "17": {
+        "level": "C1",
+        "prompt": "Subjuntivo compuesto (anterioridad): Me alegra que lo ___ tan rápido.",
+        "options": {
+          "A": "resuelves",
+          "B": "resolvieras",
+          "C": "hayas resuelto",
+          "D": "habías resuelto"
+        },
+        "answer": "C"
+      },
+      "18": {
+        "level": "C1",
+        "prompt": "Conector concesivo (registro formal): ___ las dificultades, el proyecto salió adelante.",
+        "options": {
+          "A": "Aunque",
+          "B": "A pesar de",
+          "C": "Porque",
+          "D": "Por lo tanto"
+        },
+        "answer": "B"
+      },
+      "19": {
+        "level": "C1",
+        "prompt": "Perífrasis aspectual (значение “окончательно”): Después de meses de negociaciones, ___ llegando a un acuerdo.",
+        "options": {
+          "A": "acabaron por",
+          "B": "llevan",
+          "C": "vuelven a",
+          "D": "suelen"
+        },
+        "answer": "A"
+      },
+      "20": {
+        "level": "C1",
+        "prompt": "Matiz léxico / colocación (формально и естественно): El informe pone de ___ la necesidad de reformas profundas.",
+        "options": {
+          "A": "manifiesto",
+          "B": "claro",
+          "C": "luz",
+          "D": "evidencia"
+        },
+        "answer": "A"
+      }
+    }
+  },
+  "english": {
+    "test_name": "English Placement Test (A1 → C1)",
+    "questions": {
+      "1": {
+        "level": "A1",
+        "prompt": "Present continuous: They ___ dinner right now.",
+        "options": {
+          "A": "cook",
+          "B": "are cooking",
+          "C": "cooking",
+          "D": "cooks"
+        },
+        "answer": "B"
+      },
+      "2": {
+        "level": "A1",
+        "prompt": "Past simple: I ___ my phone at home yesterday.",
+        "options": {
+          "A": "leave",
+          "B": "left",
+          "C": "have left",
+          "D": "was leaving"
+        },
+        "answer": "B"
+      },
+      "3": {
+        "level": "A1",
+        "prompt": "Quantifiers: There isn’t ___ time to talk.",
+        "options": {
+          "A": "many",
+          "B": "much",
+          "C": "a few",
+          "D": "several"
+        },
+        "answer": "B"
+      },
+      "4": {
+        "level": "A1",
+        "prompt": "Prepositions of time: My lesson starts ___ 6 p.m.",
+        "options": {
+          "A": "in",
+          "B": "on",
+          "C": "at",
+          "D": "by"
+        },
+        "answer": "C"
+      },
+      "5": {
+        "level": "A2",
+        "prompt": "Present perfect (experience): I ___ this film before.",
+        "options": {
+          "A": "saw",
+          "B": "have seen",
+          "C": "see",
+          "D": "am seeing"
+        },
+        "answer": "B"
+      },
+      "6": {
+        "level": "A2",
+        "prompt": "First conditional: If it ___, we’ll take a taxi.",
+        "options": {
+          "A": "rains",
+          "B": "will rain",
+          "C": "rained",
+          "D": "would rain"
+        },
+        "answer": "A"
+      },
+      "7": {
+        "level": "A2",
+        "prompt": "Relative clause: That’s the man ___ works with my sister.",
+        "options": {
+          "A": "which",
+          "B": "who",
+          "C": "whose",
+          "D": "where"
+        },
+        "answer": "B"
+      },
+      "8": {
+        "level": "A2",
+        "prompt": "Verb patterns: I enjoy ___ new people.",
+        "options": {
+          "A": "meet",
+          "B": "to meet",
+          "C": "meeting",
+          "D": "met"
+        },
+        "answer": "C"
+      },
+      "9": {
+        "level": "B1",
+        "prompt": "Passive (future): The results ___ tomorrow.",
+        "options": {
+          "A": "will announce",
+          "B": "will be announced",
+          "C": "are announcing",
+          "D": "have announced"
+        },
+        "answer": "B"
+      },
+      "10": {
+        "level": "B1",
+        "prompt": "Reported speech: She said she ___ busy.",
+        "options": {
+          "A": "is",
+          "B": "was",
+          "C": "has been",
+          "D": "will be"
+        },
+        "answer": "B"
+      },
+      "11": {
+        "level": "B1",
+        "prompt": "Modal deduction: He’s not here yet—he ___ be stuck in traffic.",
+        "options": {
+          "A": "must",
+          "B": "might",
+          "C": "can’t",
+          "D": "should"
+        },
+        "answer": "B"
+      },
+      "12": {
+        "level": "B1",
+        "prompt": "Linker (contrast): I was exhausted; ___, I finished the assignment.",
+        "options": {
+          "A": "because",
+          "B": "however",
+          "C": "so",
+          "D": "although"
+        },
+        "answer": "B"
+      },
+      "13": {
+        "level": "B2",
+        "prompt": "Wish (present regret): I wish I ___ more confident in meetings.",
+        "options": {
+          "A": "am",
+          "B": "were",
+          "C": "will be",
+          "D": "had been"
+        },
+        "answer": "B"
+      },
+      "14": {
+        "level": "B2",
+        "prompt": "Mixed conditional: If I ___ harder at university, I would have more options now.",
+        "options": {
+          "A": "study",
+          "B": "studied",
+          "C": "had studied",
+          "D": "would study"
+        },
+        "answer": "C"
+      },
+      "15": {
+        "level": "B2",
+        "prompt": "Inversion: Not only ___ late, but he also forgot the key.",
+        "options": {
+          "A": "he was",
+          "B": "was he",
+          "C": "he were",
+          "D": "were he"
+        },
+        "answer": "B"
+      },
+      "16": {
+        "level": "B2",
+        "prompt": "Participle clause: ___ the contract carefully, she signed it.",
+        "options": {
+          "A": "Read",
+          "B": "Having read",
+          "C": "Being read",
+          "D": "To read"
+        },
+        "answer": "B"
+      },
+      "17": {
+        "level": "C1",
+        "prompt": "Advanced inversion: Hardly _ the presentation _ when the projector stopped working.",
+        "options": {
+          "A": "had / begun",
+          "B": "has / begun",
+          "C": "did / begin",
+          "D": "was / beginning"
+        },
+        "answer": "A"
+      },
+      "18": {
+        "level": "C1",
+        "prompt": "Subjunctive nuance (recommendation/necessity): It’s essential that he ___ informed immediately.",
+        "options": {
+          "A": "is",
+          "B": "be",
+          "C": "was",
+          "D": "will be"
+        },
+        "answer": "B"
+      },
+      "19": {
+        "level": "C1",
+        "prompt": "C1 collocation + register: The findings ___ serious doubts about the accuracy of the data.",
+        "options": {
+          "A": "raise",
+          "B": "rise",
+          "C": "arouse",
+          "D": "lift"
+        },
+        "answer": "A"
+      },
+      "20": {
+        "level": "C1",
+        "prompt": "Lexis/meaning precision: Her argument is sound, ___ one minor detail.",
+        "options": {
+          "A": "apart from",
+          "B": "excepting of",
+          "C": "besides of",
+          "D": "other than to"
+        },
+        "answer": "A"
+      }
+    }
+  },
+  "german": {
+    "test_name": "Deutsch Einstufungstest (A1 → C1)",
+    "questions": {
+      "1": {
+        "level": "A1",
+        "prompt": "Präsens (sein): Ich ___ müde.",
+        "options": {
+          "A": "bin",
+          "B": "bist",
+          "C": "ist",
+          "D": "sind"
+        },
+        "answer": "A"
+      },
+      "2": {
+        "level": "A1",
+        "prompt": "W-Frage: ___ wohnt ihr? – In der Altstadt.",
+        "options": {
+          "A": "Wann",
+          "B": "Wo",
+          "C": "Wohin",
+          "D": "Woher"
+        },
+        "answer": "B"
+      },
+      "3": {
+        "level": "A1",
+        "prompt": "Artikel: ___ Handy ist neu.",
+        "options": {
+          "A": "der",
+          "B": "die",
+          "C": "das",
+          "D": "den"
+        },
+        "answer": "C"
+      },
+      "4": {
+        "level": "A1",
+        "prompt": "Negation (kein/nicht): Ich trinke ___ Kaffee.",
+        "options": {
+          "A": "nicht",
+          "B": "kein",
+          "C": "keine",
+          "D": "keinen"
+        },
+        "answer": "D"
+      },
+      "5": {
+        "level": "A2",
+        "prompt": "Modalverb: Du ___ hier nicht parken.",
+        "options": {
+          "A": "darfst",
+          "B": "darf",
+          "C": "darfst du",
+          "D": "gedurft"
+        },
+        "answer": "A"
+      },
+      "6": {
+        "level": "A2",
+        "prompt": "Trennbares Verb: Wir _ morgen um 8 Uhr _. (losfahren)",
+        "options": {
+          "A": "fahren / los",
+          "B": "losfahren / —",
+          "C": "fuhren / los",
+          "D": "fahren / an"
+        },
+        "answer": "A"
+      },
+      "7": {
+        "level": "A2",
+        "prompt": "Perfekt (sein/haben): Er _ nach Hause _. (gehen)",
+        "options": {
+          "A": "hat / gegangen",
+          "B": "ist / gegangen",
+          "C": "hat / gegangen ist",
+          "D": "ist / gegangen hat"
+        },
+        "answer": "B"
+      },
+      "8": {
+        "level": "A2",
+        "prompt": "Präposition + Dativ: Sie spricht gerade ___ dem Chef.",
+        "options": {
+          "A": "mit",
+          "B": "für",
+          "C": "durch",
+          "D": "ohne"
+        },
+        "answer": "A"
+      },
+      "9": {
+        "level": "B1",
+        "prompt": "Nebensatz mit „weil“: Ich komme später, weil ich noch ___ .",
+        "options": {
+          "A": "arbeite muss",
+          "B": "arbeiten muss",
+          "C": "muss arbeiten",
+          "D": "arbeiten muss ich"
+        },
+        "answer": "B"
+      },
+      "10": {
+        "level": "B1",
+        "prompt": "Relativsatz (Akkusativ): Das ist der Kollege, ___ ich gestern angerufen habe.",
+        "options": {
+          "A": "der",
+          "B": "den",
+          "C": "dem",
+          "D": "dessen"
+        },
+        "answer": "B"
+      },
+      "11": {
+        "level": "B1",
+        "prompt": "Konnektor (смысл): Er hat viel gelernt, ___ hat er die Prüfung bestanden.",
+        "options": {
+          "A": "obwohl",
+          "B": "deshalb",
+          "C": "während",
+          "D": "damit"
+        },
+        "answer": "B"
+      },
+      "12": {
+        "level": "B1",
+        "prompt": "Adjektivdeklination (mit Artikel): Ich hätte gern ___ Kaffee.",
+        "options": {
+          "A": "einen schwarz",
+          "B": "ein schwarzen",
+          "C": "einen schwarzen",
+          "D": "einem schwarzen"
+        },
+        "answer": "C"
+      },
+      "13": {
+        "level": "B2",
+        "prompt": "Indirekte Frage (Wortstellung): Weißt du, wann der Film ___ ?",
+        "options": {
+          "A": "beginnt",
+          "B": "beginnen",
+          "C": "beginnt er",
+          "D": "begonnen hat"
+        },
+        "answer": "A"
+      },
+      "14": {
+        "level": "B2",
+        "prompt": "Passiv (Präsens): In diesem Betrieb _ viel Wert auf Sicherheit _.",
+        "options": {
+          "A": "wird / gelegt",
+          "B": "ist / gelegt",
+          "C": "werden / gelegt",
+          "D": "wurde / gelegt"
+        },
+        "answer": "A"
+      },
+      "15": {
+        "level": "B2",
+        "prompt": "Rektion (управление): Er hat sich ___ den Fehler entschuldigt.",
+        "options": {
+          "A": "für",
+          "B": "über",
+          "C": "auf",
+          "D": "an"
+        },
+        "answer": "A"
+      },
+      "16": {
+        "level": "B2",
+        "prompt": "Plusquamperfekt: Nachdem sie die E-Mail ___, rief sie ihn sofort an.",
+        "options": {
+          "A": "liest",
+          "B": "gelesen hatte",
+          "C": "gelesen hat",
+          "D": "las"
+        },
+        "answer": "B"
+      },
+      "17": {
+        "level": "C1",
+        "prompt": "Indirekte Rede (Konjunktiv I + согласование времени/лица): Die Presse berichtete, der Minister _ bereits am Vortag von den Vorwürfen _.",
+        "options": {
+          "A": "habe / gewusst",
+          "B": "hätte / gewusst",
+          "C": "hat / gewusst",
+          "D": "sei / wissen"
+        },
+        "answer": "A"
+      },
+      "18": {
+        "level": "C1",
+        "prompt": "Indirekte Rede (Ersatzform с „würde“ — когда KI звучит неестественно/двусмысленно): Er sagte, er ___ die Aufgabe bis Montag erledigen.",
+        "options": {
+          "A": "werde",
+          "B": "würde",
+          "C": "wird",
+          "D": "hätte"
+        },
+        "answer": "A"
+      },
+      "19": {
+        "level": "C1",
+        "prompt": "Partizipialkonstruktion (корректная форма + смысл, Dat./Akk.-связь): Die ___ Maßnahmen sollen kurzfristig Wirkung zeigen.",
+        "options": {
+          "A": "von der Regierung beschlossene",
+          "B": "von der Regierung beschlossenen",
+          "C": "von der Regierung beschließend",
+          "D": "die von der Regierung beschlossen"
+        },
+        "answer": "B"
+      },
+      "20": {
+        "level": "C1",
+        "prompt": "Komplexer Konnektor + структура предложения (значение “несмотря на”): ___ aller Bemühungen blieb der Durchbruch aus.",
+        "options": {
+          "A": "Trotz",
+          "B": "Wegen",
+          "C": "Mangels",
+          "D": "Anhand"
+        },
+        "answer": "A"
+      }
+    }
+  },
+  "french": {
+    "test_name": "Test de placement – Français (A1 → C1)",
+    "questions": {
+      "1": {
+        "level": "A1",
+        "prompt": "Présent: Je ___ souvent en retard.",
+        "options": {
+          "A": "suis",
+          "B": "es",
+          "C": "est",
+          "D": "sont"
+        },
+        "answer": "A"
+      },
+      "2": {
+        "level": "A1",
+        "prompt": "Articles: C’est ___ idée intéressante.",
+        "options": {
+          "A": "un",
+          "B": "une",
+          "C": "des",
+          "D": "le"
+        },
+        "answer": "B"
+      },
+      "3": {
+        "level": "A1",
+        "prompt": "Négation: Il n’y a ___ problème.",
+        "options": {
+          "A": "pas de",
+          "B": "pas du",
+          "C": "pas des",
+          "D": "pas un"
+        },
+        "answer": "A"
+      },
+      "4": {
+        "level": "A1",
+        "prompt": "Prépositions (ville/pays): Elle habite ___ Espagne et travaille ___ Madrid.",
+        "options": {
+          "A": "à / en",
+          "B": "en / à",
+          "C": "au / à",
+          "D": "en / en"
+        },
+        "answer": "B"
+      },
+      "5": {
+        "level": "A2",
+        "prompt": "Passé composé (auxiliaire): Nous ___ rentrés tard.",
+        "options": {
+          "A": "avons",
+          "B": "sommes",
+          "C": "étions",
+          "D": "serons"
+        },
+        "answer": "B"
+      },
+      "6": {
+        "level": "A2",
+        "prompt": "Pronoms COD: Tu connais Marie ? Oui, je ___ connais bien.",
+        "options": {
+          "A": "la",
+          "B": "lui",
+          "C": "le",
+          "D": "en"
+        },
+        "answer": "A"
+      },
+      "7": {
+        "level": "A2",
+        "prompt": "Futur proche: Ils ___ partir tout à l’heure.",
+        "options": {
+          "A": "vont",
+          "B": "iront",
+          "C": "sont",
+          "D": "viennent"
+        },
+        "answer": "A"
+      },
+      "8": {
+        "level": "A2",
+        "prompt": "Comparatif: Ce livre est ___ que celui-là.",
+        "options": {
+          "A": "plus intéressant",
+          "B": "plus intéressant que",
+          "C": "le plus intéressant",
+          "D": "aussi intéressant de"
+        },
+        "answer": "A"
+      },
+      "9": {
+        "level": "B1",
+        "prompt": "Imparfait vs passé composé: Quand je suis arrivé, il ___ déjà.",
+        "options": {
+          "A": "partait",
+          "B": "est parti",
+          "C": "était parti",
+          "D": "partira"
+        },
+        "answer": "C"
+      },
+      "10": {
+        "level": "B1",
+        "prompt": "Subjonctif (volonté/nécessité): Je veux que vous ___ plus précis.",
+        "options": {
+          "A": "êtes",
+          "B": "soyez",
+          "C": "serez",
+          "D": "étiez"
+        },
+        "answer": "B"
+      },
+      "11": {
+        "level": "B1",
+        "prompt": "Depuis / il y a / pendant: Je n’ai pas vu Léa ___ deux mois.",
+        "options": {
+          "A": "depuis",
+          "B": "pendant",
+          "C": "il y a",
+          "D": "pour"
+        },
+        "answer": "A"
+      },
+      "12": {
+        "level": "B1",
+        "prompt": "Pronoms “y/en”: Tu penses à tes vacances ? Oui, j’___ pense tout le temps.",
+        "options": {
+          "A": "en",
+          "B": "y",
+          "C": "lui",
+          "D": "le"
+        },
+        "answer": "B"
+      },
+      "13": {
+        "level": "B2",
+        "prompt": "Discours indirect (concordance des temps): Il a promis qu’il ___ dès qu’il ___ le temps.",
+        "options": {
+          "A": "viendra / aura",
+          "B": "viendrait / aurait",
+          "C": "viendrait / aurait eu",
+          "D": "viendra / avait"
+        },
+        "answer": "B"
+      },
+      "14": {
+        "level": "B2",
+        "prompt": "Conditionnel passé (regret / hypothèse passée): Sans ton aide, je n’___ jamais ___ finir à temps.",
+        "options": {
+          "A": "aurais / pu",
+          "B": "ai / pu",
+          "C": "avais / pu",
+          "D": "serais / pu"
+        },
+        "answer": "A"
+      },
+      "15": {
+        "level": "B2",
+        "prompt": "Ordre des pronoms (double objet + temps composé): Je ___ ai ___ expliqué. (les règles à mes collègues)",
+        "options": {
+          "A": "les / leur",
+          "B": "leur / les",
+          "C": "les / leurs",
+          "D": "leur / leur"
+        },
+        "answer": "A"
+      },
+      "16": {
+        "level": "B2",
+        "prompt": "Accord du participe passé (cas piégeux): Les documents que je leur ai ___ sont confidentiels.",
+        "options": {
+          "A": "envoyés",
+          "B": "envoyées",
+          "C": "envoyé",
+          "D": "envoyée"
+        },
+        "answer": "A"
+      },
+      "17": {
+        "level": "C1",
+        "prompt": "Subjonctif / indicatif (sens: fait constaté vs doute/jugement): Il est possible qu’elle ___ déjà au courant, mais il est certain qu’elle ___ la vérité.",
+        "options": {
+          "A": "est / dit",
+          "B": "soit / dit",
+          "C": "soit / dise",
+          "D": "est / dise"
+        },
+        "answer": "B"
+      },
+      "18": {
+        "level": "C1",
+        "prompt": "“Ne” explétif + nuance (correct + naturel): Je crains qu’il ne ___ trop tard pour revenir en arrière.",
+        "options": {
+          "A": "soit",
+          "B": "est",
+          "C": "sera",
+          "D": "serait"
+        },
+        "answer": "A"
+      },
+      "19": {
+        "level": "C1",
+        "prompt": "Mise en relief / stylistique (phrase la plus idiomatique et correcte):",
+        "options": {
+          "A": "C’est Paul qui a réparé la voiture, pas moi.",
+          "B": "C’est Paul qu’a réparé la voiture, pas moi.",
+          "C": "C’est Paul lequel a réparé la voiture, pas moi.",
+          "D": "C’est Paul qui a réparé la voiture, pas je."
+        },
+        "answer": "A"
+      },
+      "20": {
+        "level": "C1",
+        "prompt": "Connecteurs + logique argumentative (registre soutenu): ___ l’on admette la pertinence de cette approche, elle n’en demeure pas moins difficile à mettre en œuvre.",
+        "options": {
+          "A": "Pourvu que",
+          "B": "À supposer que",
+          "C": "Au cas où",
+          "D": "Tant que"
+        },
+        "answer": "B"
+      }
+    }
+  }
+}
