@@ -255,6 +255,7 @@ export function BookingDialog({
           className={cn(
             "fixed left-1/2 top-1/2 z-50 w-[calc(100vw-1.5rem)] -translate-x-1/2 -translate-y-1/2",
             "max-w-3xl overflow-hidden rounded-3xl border border-border/60 bg-card/90 backdrop-blur-xl shadow-2xl shadow-foreground/10",
+            "flex flex-col min-h-0",
             "max-h-[calc(100dvh-1.5rem)]",
           )}
         >
@@ -270,7 +271,7 @@ export function BookingDialog({
             <X className="h-5 w-5" />
           </DialogClose>
 
-          <div className="flex h-full flex-col">
+          <div className="flex min-h-0 flex-1 flex-col">
             {/* Header */}
             <div className="relative border-b border-border/50 bg-background/40 px-6 pb-5 pt-6">
               <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Запис на урок</p>
@@ -287,7 +288,7 @@ export function BookingDialog({
             </div>
 
             {/* Body */}
-            <div className="flex-1 overflow-y-auto px-6 py-6 md:px-8 md:py-8">
+            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 py-6 md:px-8 md:py-8">
               <AnimatePresence mode="wait">
                 {screen === "entry" && (
                   <motion.div
