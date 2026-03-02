@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { BookOpen, ArrowRight, ListChecks } from "lucide-react";
+import { BookOpen, ArrowRight, ListChecks, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { useBookingDialog } from "@/components/booking/BookingDialogProvider";
 import { LanguageLevelDialog } from "@/components/LanguageLevelDialog";
 
 const steps = [
   { id: "teachers", icon: BookOpen, title: "Обери викладача", desc: "під твою ціль і стиль" },
+  { id: "packages", icon: Users, title: "Пакети", desc: "плани та вартість навчання" },
   { id: "level-test", icon: ListChecks, title: "Визнач свій рівень мови", desc: "короткий тест за 1–2 хв" },
 ];
 
@@ -66,7 +67,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col items-center gap-3 sm:flex-row sm:items-start"
+            className="flex flex-wrap gap-3"
           >
             <button
               type="button"
@@ -76,15 +77,9 @@ const HeroSection = () => {
               Записатися на пробний урок
               <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
             </button>
-            <a
-              href="#formats"
-              className="inline-flex items-center justify-center rounded-xl border border-border/60 bg-card/50 backdrop-blur-sm px-7 py-3.5 text-sm font-semibold text-foreground hover:bg-accent/40 transition-all"
-            >
-              Дізнатись про курси
-            </a>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-3">
             {steps.map((s, i) => (
               <motion.div
                 key={s.id}
@@ -110,6 +105,14 @@ const HeroSection = () => {
                       className="mt-auto pt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-opacity hover:opacity-80"
                     >
                       Переглянути викладачів <ArrowRight size={14} />
+                    </a>
+                  )}
+                  {s.id === "packages" && (
+                    <a
+                      href="#pricing"
+                      className="mt-auto pt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-opacity hover:opacity-80"
+                    >
+                      Переглянути пакети <ArrowRight size={14} />
                     </a>
                   )}
                   {s.id === "level-test" && (

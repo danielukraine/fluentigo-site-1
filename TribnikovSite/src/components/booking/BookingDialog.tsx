@@ -147,23 +147,23 @@ function TeacherCard({
       onClick={onClick}
       aria-pressed={selected}
       className={cn(
-        "group w-full rounded-3xl border p-5 text-left transition-all duration-300",
+        "group w-full rounded-2xl border p-4 text-left transition-all duration-300 md:rounded-3xl md:p-5",
         "bg-card/80 backdrop-blur-sm border-border/50 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/[0.04]",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         selected && "border-primary/30 bg-primary/[0.03] ring-1 ring-primary/15",
       )}
     >
       <div className="flex items-start gap-4">
-        <Avatar className="h-12 w-12 rounded-2xl">
+        <Avatar className="h-10 w-10 rounded-xl md:h-12 md:w-12 md:rounded-2xl">
           <AvatarImage src={teacher.imageUrl} alt={teacher.name} />
-          <AvatarFallback className="rounded-2xl text-sm font-bold">{getInitials(teacher.name)}</AvatarFallback>
+          <AvatarFallback className="rounded-xl text-xs font-bold md:rounded-2xl md:text-sm">{getInitials(teacher.name)}</AvatarFallback>
         </Avatar>
 
         <div className="min-w-0 flex-1">
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
-              <p className="text-base font-extrabold tracking-tight truncate">{teacher.name}</p>
-              <p className="mt-0.5 text-xs font-semibold text-muted-foreground uppercase tracking-widest truncate">
+              <p className="text-sm font-extrabold tracking-tight truncate md:text-base">{teacher.name}</p>
+              <p className="mt-0.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-widest truncate md:text-xs">
                 {teacher.headline}
               </p>
             </div>
@@ -182,7 +182,7 @@ function TeacherCard({
             {teacher.tags.map((t) => (
               <span
                 key={t}
-                className="rounded-full bg-accent/60 px-3 py-1 text-xs font-semibold text-accent-foreground ring-1 ring-border/40"
+                className="rounded-full bg-accent/60 px-2.5 py-1 text-xs font-semibold text-accent-foreground ring-1 ring-border/40"
               >
                 {t}
               </span>
@@ -253,8 +253,8 @@ export function BookingDialog({
 
         <DialogPrimitive.Content
           className={cn(
-            "fixed left-1/2 top-1/2 z-50 w-[calc(100vw-1.5rem)] -translate-x-1/2 -translate-y-1/2",
-            "max-w-3xl overflow-hidden rounded-3xl border border-border/60 bg-card/90 backdrop-blur-xl shadow-2xl shadow-foreground/10",
+            "fixed left-1/2 top-1/2 z-50 w-[calc(100vw-1rem)] -translate-x-1/2 -translate-y-1/2 sm:w-[calc(100vw-1.5rem)]",
+            "max-w-3xl overflow-x-hidden overflow-y-hidden rounded-2xl border border-border/60 bg-card/90 backdrop-blur-xl shadow-2xl shadow-foreground/10 sm:rounded-3xl",
             "flex flex-col min-h-0",
             "max-h-[calc(100dvh-1.5rem)]",
           )}
@@ -480,19 +480,21 @@ export function BookingDialog({
                           </a>
                         </div>
 
-                        <div className="grid gap-3 md:grid-cols-3">
-                          {teachersForLanguage.map((t) => {
-                            const recommended = !!state.language && !!state.goal && t.languages.includes(state.language) && t.goals.includes(state.goal);
-                            return (
-                              <TeacherCard
-                                key={t.id}
-                                teacher={t}
-                                selected={state.teacher === t.id}
-                                recommended={recommended}
-                                onClick={() => setState((s) => ({ ...s, teacher: t.id }))}
-                              />
-                            );
-                          })}
+                        <div className="max-h-[42dvh] overflow-y-auto pr-1">
+                          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                            {teachersForLanguage.map((t) => {
+                              const recommended = !!state.language && !!state.goal && t.languages.includes(state.language) && t.goals.includes(state.goal);
+                              return (
+                                <TeacherCard
+                                  key={t.id}
+                                  teacher={t}
+                                  selected={state.teacher === t.id}
+                                  recommended={recommended}
+                                  onClick={() => setState((s) => ({ ...s, teacher: t.id }))}
+                                />
+                              );
+                            })}
+                          </div>
                         </div>
 
                         <div className="rounded-2xl bg-muted/40 p-4 ring-1 ring-border/40">

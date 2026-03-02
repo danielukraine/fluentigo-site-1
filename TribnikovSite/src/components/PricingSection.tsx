@@ -166,7 +166,13 @@ const PricingSection = () => {
           </button>
         </div>
 
-        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:pb-0">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground md:hidden">
+          Свайпай, щоб переглянути всі пакети →
+        </p>
+        <div className="relative md:contents">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-background to-transparent md:hidden" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-background to-transparent md:hidden" />
+          <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 pl-[8vw] pr-[8vw] [scrollbar-width:thin] md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:pb-0 md:pl-0 md:pr-0">
           {packages.map((pkg, i) => {
             const plan = activeTab === "standard" ? pkg.standard : pkg.premium;
             const isFlipped = flippedCardId === pkg.id;
@@ -183,7 +189,7 @@ const PricingSection = () => {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-40px" }}
                 variants={cardVariants}
-                className="relative h-full w-[88vw] shrink-0 snap-start md:w-auto md:shrink"
+                className="relative h-full w-[84vw] shrink-0 snap-center md:w-auto md:shrink"
               >
                 <div className={pkg.extraInfo ? "relative h-full [perspective:1200px]" : "h-full"}>
                   {pkg.extraInfo && (
@@ -265,6 +271,7 @@ const PricingSection = () => {
               </motion.div>
             );
           })}
+          </div>
         </div>
 
         <motion.div
