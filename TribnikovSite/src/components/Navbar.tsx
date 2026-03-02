@@ -24,9 +24,9 @@ const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 z-50 transition-[background-color,border-color,box-shadow] duration-150 ${
         scrolled
-          ? "bg-card/90 backdrop-blur-xl border-b shadow-sm"
+          ? "bg-card/95 md:bg-card/90 backdrop-blur-md md:backdrop-blur-xl border-b shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -83,6 +83,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.16, ease: "easeOut" }}
             className="md:hidden bg-card/95 backdrop-blur-xl border-b overflow-hidden"
           >
             <div className="px-6 pb-6 pt-3 space-y-3">
