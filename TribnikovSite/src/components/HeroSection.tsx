@@ -66,12 +66,12 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-wrap gap-3"
+            className="flex flex-col items-center gap-3 sm:flex-row sm:items-start"
           >
             <button
               type="button"
               onClick={openBooking}
-              className="group inline-flex items-center gap-2 rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-xl shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] transition-all"
+              className="group inline-flex w-full max-w-[92vw] items-center justify-center gap-2 rounded-2xl bg-primary px-7 py-4 text-base font-semibold text-primary-foreground shadow-xl shadow-primary/25 transition-all hover:scale-[1.02] hover:shadow-primary/40 sm:max-w-none sm:w-auto sm:rounded-xl sm:py-3.5 sm:text-sm"
             >
               Записатися на пробний урок
               <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />

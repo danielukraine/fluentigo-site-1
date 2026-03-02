@@ -166,7 +166,7 @@ const PricingSection = () => {
           </button>
         </div>
 
-        <div className="grid items-stretch gap-5 md:grid-cols-2">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:pb-0">
           {packages.map((pkg, i) => {
             const plan = activeTab === "standard" ? pkg.standard : pkg.premium;
             const isFlipped = flippedCardId === pkg.id;
@@ -183,7 +183,7 @@ const PricingSection = () => {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-40px" }}
                 variants={cardVariants}
-                className="relative h-full"
+                className="relative h-full w-[88vw] shrink-0 snap-start md:w-auto md:shrink"
               >
                 <div className={pkg.extraInfo ? "relative h-full [perspective:1200px]" : "h-full"}>
                   {pkg.extraInfo && (
