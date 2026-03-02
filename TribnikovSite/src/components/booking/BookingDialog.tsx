@@ -98,7 +98,7 @@ function ChoiceCard({
       onClick={onClick}
       aria-pressed={selected}
       className={cn(
-        "group w-full rounded-3xl border p-5 text-left transition-all duration-300",
+        "group w-full min-w-0 rounded-3xl border p-5 text-left transition-all duration-300",
         "bg-card/80 backdrop-blur-sm border-border/50 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/[0.04]",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         selected && "border-primary/30 bg-primary/[0.03] ring-1 ring-primary/15",
@@ -120,9 +120,8 @@ function ChoiceCard({
           )}
         </div>
         <div className="min-w-0 flex-1">
-          <div className="flex items-start justify-between gap-3">
-            <h4 className="text-base font-bold tracking-tight">{title}</h4>
-            {selected && <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />}
+          <div className="flex min-w-0 items-start gap-3">
+            <h4 className="min-w-0 truncate text-base font-bold tracking-tight">{title}</h4>
           </div>
           <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{desc}</p>
         </div>
@@ -245,6 +244,7 @@ export function BookingDialog({
   };
 
   const managerLink = withTelegramText(MANAGER_TELEGRAM_URL, buildTelegramMessage(state));
+  const teachersForLanguage = state.language ? teachers.filter((t) => t.languages.includes(state.language)) : [];
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -413,7 +413,7 @@ export function BookingDialog({
                           <h3 className="mt-2 text-lg md:text-xl font-extrabold tracking-tight">Обери мову</h3>
                         </div>
 
-                        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+                        <div className="grid min-w-0 gap-3 md:grid-cols-2">
                           {languages.map((l) => (
                             <ChoiceCard
                               key={l.id}
@@ -424,6 +424,12 @@ export function BookingDialog({
                               onClick={() => setState((s) => ({ ...s, language: l.id, goal: undefined, teacher: undefined }))}
                             />
                           ))}
+                        </div>
+
+                        <div className="rounded-2xl bg-muted/40 p-4 ring-1 ring-border/40">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            Для початку обери мову.
+                          </p>
                         </div>
                       </>
                     )}
@@ -462,19 +468,19 @@ export function BookingDialog({
                           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">Викладач</p>
                           <h3 className="mt-2 text-lg md:text-xl font-extrabold tracking-tight">Обери викладача</h3>
                           <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                            Доступно {teachers.length} варіантів. Обери того, хто найкраще підходить під твою ціль.
+                            Доступно {teachersForLanguage.length} варіантів для обраної мови. Обери того, хто найкраще підходить під твою ціль.
                           </p>
                           <a
                             href="#teachers"
                             onClick={() => onOpenChange(false)}
                             className="mt-3 inline-flex items-center gap-2 rounded-xl border border-border/60 bg-background/60 px-3 py-2 text-xs font-semibold text-foreground transition-colors hover:bg-accent/40"
                           >
-                            Show all teachers <ArrowRight className="h-3.5 w-3.5" />
+                            Усі викладачі <ArrowRight className="h-3.5 w-3.5" />
                           </a>
                         </div>
 
                         <div className="grid gap-3 md:grid-cols-3">
-                          {teachers.map((t) => {
+                          {teachersForLanguage.map((t) => {
                             const recommended = !!state.language && !!state.goal && t.languages.includes(state.language) && t.goals.includes(state.goal);
                             return (
                               <TeacherCard
@@ -501,7 +507,7 @@ export function BookingDialog({
                       <button
                         type="button"
                         onClick={goBack}
-                        className="inline-flex items-center gap-2 rounded-xl border border-border/60 bg-background/60 px-4 py-2.5 text-sm font-semibold text-foreground hover:bg-accent/40 transition-colors"
+                        className="inline-flex h-11 min-w-[120px] items-center justify-center gap-2 rounded-xl border border-border/60 bg-background/60 px-4 text-sm font-semibold text-foreground transition-colors hover:bg-accent/40"
                       >
                         <ArrowLeft className="h-4 w-4" /> Назад
                       </button>
@@ -512,7 +518,7 @@ export function BookingDialog({
                           onClick={goNext}
                           disabled={!canGoNext}
                           className={cn(
-                            "inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all",
+                            "inline-flex h-11 min-w-[120px] items-center justify-center gap-2 rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all",
                             "hover:shadow-primary/30 disabled:opacity-50 disabled:shadow-none disabled:hover:shadow-none",
                           )}
                         >
@@ -532,7 +538,7 @@ export function BookingDialog({
                           }}
                           aria-disabled={!canFinish}
                           className={cn(
-                            "inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all",
+                            "inline-flex h-11 min-w-[120px] items-center justify-center gap-2 rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all",
                             "hover:shadow-primary/30",
                             !canFinish && "pointer-events-none opacity-50 shadow-none",
                           )}

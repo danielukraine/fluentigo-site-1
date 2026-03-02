@@ -128,20 +128,36 @@ export function LanguageLevelDialog({ open, onOpenChange }: LanguageLevelDialogP
 
                 <div className="mt-4 space-y-2">
                   {currentQuestion.options.map((option) => {
-                    const active = answers[currentQuestion.id] === option.id;
+                    const selectedOptionId = answers[currentQuestion.id];
+                    const answered = !!selectedOptionId;
+                    const isSelected = selectedOptionId === option.id;
+                    const isCorrect = option.id === currentQuestion.correctOptionId;
+                    const isWrongSelection = answered && isSelected && !isCorrect;
+                    const isCorrectShown = answered && isCorrect;
+
                     return (
                       <button
                         key={option.id}
                         type="button"
-                        onClick={() => setAnswers((prev) => ({ ...prev, [currentQuestion.id]: option.id }))}
+                        onClick={() => {
+                          if (answered) return;
+                          setAnswers((prev) => ({ ...prev, [currentQuestion.id]: option.id }));
+                        }}
+                        disabled={answered}
                         className={cn(
                           "w-full rounded-xl border px-4 py-3 text-left text-sm transition-all",
-                          active
-                            ? "border-primary/40 bg-primary/[0.06] text-foreground"
-                            : "border-border/50 bg-background/50 text-muted-foreground hover:text-foreground",
+                          answered && "cursor-default",
+                          isCorrectShown && "border-emerald-300/80 bg-emerald-50 text-emerald-900",
+                          isWrongSelection && "border-rose-300/80 bg-rose-50 text-rose-900",
+                          !answered && "border-border/50 bg-background/50 text-muted-foreground hover:text-foreground",
+                          answered && !isCorrectShown && !isWrongSelection && "border-border/40 bg-background/40 text-muted-foreground",
                         )}
                       >
-                        {option.text}
+                        <div className="flex items-center justify-between gap-3">
+                          <span>{option.text}</span>
+                          {isCorrectShown && <span className="text-xs font-semibold text-emerald-700">Правильно</span>}
+                          {isWrongSelection && <span className="text-xs font-semibold text-rose-700">Неправильно</span>}
+                        </div>
                       </button>
                     );
                   })}

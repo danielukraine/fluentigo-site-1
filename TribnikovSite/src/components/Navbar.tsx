@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useBookingDialog } from "@/components/booking/BookingDialogProvider";
+import { TEACHER_BOT_TELEGRAM_URL } from "@/config/contact";
 
 const navLinks = [
   { label: "Курси", href: "#formats" },
@@ -48,6 +49,14 @@ const Navbar = () => {
               {l.label}
             </a>
           ))}
+          <a
+            href={TEACHER_BOT_TELEGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all"
+          >
+            Стати викладачем
+          </a>
           <button
             type="button"
             onClick={openBooking}
@@ -76,7 +85,20 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-card/95 backdrop-blur-xl border-b overflow-hidden"
           >
-            <div className="px-6 pb-6 pt-2 space-y-1">
+            <div className="px-6 pb-6 pt-3 space-y-3">
+              <div className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    openBooking();
+                  }}
+                  className="inline-flex w-full max-w-sm items-center justify-center rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground text-center shadow-lg shadow-primary/20"
+                >
+                  Пробний урок
+                </button>
+              </div>
+
               {navLinks.map((l) => (
                 <a
                   key={l.href}
@@ -87,16 +109,15 @@ const Navbar = () => {
                   {l.label}
                 </a>
               ))}
-              <button
-                type="button"
-                onClick={() => {
-                  setOpen(false);
-                  openBooking();
-                }}
-                className="mt-3 inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground w-full text-center shadow-lg shadow-primary/20"
+              <a
+                href={TEACHER_BOT_TELEGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="inline-flex w-full items-center justify-center rounded-xl border border-border/60 bg-background/60 px-5 py-3 text-sm font-semibold text-foreground text-center transition-colors hover:bg-accent/40"
               >
-                Пробний урок
-              </button>
+                Стати викладачем
+              </a>
             </div>
           </motion.div>
         )}

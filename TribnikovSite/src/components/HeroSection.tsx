@@ -1,13 +1,11 @@
 import { useState } from "react";
-import { BookOpen, Users, Zap, ArrowRight, ListChecks } from "lucide-react";
+import { BookOpen, ArrowRight, ListChecks } from "lucide-react";
 import { motion } from "framer-motion";
 import { useBookingDialog } from "@/components/booking/BookingDialogProvider";
 import { LanguageLevelDialog } from "@/components/LanguageLevelDialog";
 
 const steps = [
   { id: "teachers", icon: BookOpen, title: "Обери викладача", desc: "під твою ціль і стиль" },
-  { id: "packages", icon: Users, title: "Пакети", desc: "план + регулярність" },
-  { id: "quick-match", icon: Zap, title: "Підбір за 60 сек", desc: "або менеджер допоможе" },
   { id: "level-test", icon: ListChecks, title: "Визнач свій рівень мови", desc: "короткий тест за 1–2 хв" },
 ];
 
@@ -21,15 +19,15 @@ const HeroSection = () => {
   const [levelDialogOpen, setLevelDialogOpen] = useState(false);
 
   return (
-  <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32">
-    {/* Subtle gradient orb */}
-    <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-primary/5 blur-3xl pointer-events-none" />
-    <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full bg-accent/30 blur-3xl pointer-events-none" />
+    <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32">
+      {/* Subtle gradient orb */}
+      <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-primary/5 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full bg-accent/30 blur-3xl pointer-events-none" />
 
-    <div className="container mx-auto px-4 md:px-8 relative">
-      <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
-        {/* Left */}
-        <div className="lg:col-span-3 space-y-8">
+      <div className="container mx-auto px-4 md:px-8 relative">
+        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+          {/* Left */}
+          <div className="lg:col-span-3 space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -129,38 +127,38 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Right card */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="lg:col-span-2 bg-card/80 backdrop-blur-sm rounded-3xl border border-border/50 p-7 space-y-5 shadow-lg shadow-foreground/[0.03]"
-        >
-          <h3 className="text-lg font-bold">Як це працює</h3>
-          {[
-            { step: "01", label: "Підбір", detail: "мова → ціль → формат" },
-            { step: "02", label: "Пакет", detail: "Starter / Standard / Intensive" },
-            { step: "03", label: "Старт", detail: "пробний + план на 4–8 тижнів" },
-          ].map((item) => (
-            <div
-              key={item.step}
-              className="flex items-center gap-4 rounded-2xl bg-accent/30 px-5 py-4 group hover:bg-accent/50 transition-colors"
-            >
-              <span className="text-xs font-bold text-primary/60">{item.step}</span>
-              <div className="flex-1">
-                <span className="font-semibold text-sm">{item.label}</span>
-                <span className="text-xs text-muted-foreground ml-2">{item.detail}</span>
+          {/* Right card */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="lg:col-span-2 bg-card/80 backdrop-blur-sm rounded-3xl border border-border/50 p-7 space-y-5 shadow-lg shadow-foreground/[0.03]"
+          >
+            <h3 className="text-lg font-bold">Як це працює</h3>
+            {[
+              { step: "01", label: "Підбір", detail: "мова → ціль → формат" },
+              { step: "02", label: "Пакет", detail: "Starter / Standard / Intensive" },
+              { step: "03", label: "Старт", detail: "пробний + план на 4–8 тижнів" },
+            ].map((item) => (
+              <div
+                key={item.step}
+                className="flex items-center gap-4 rounded-2xl bg-accent/30 px-5 py-4 group hover:bg-accent/50 transition-colors"
+              >
+                <span className="text-xs font-bold text-primary/60">{item.step}</span>
+                <div className="flex-1">
+                  <span className="font-semibold text-sm">{item.label}</span>
+                  <span className="text-xs text-muted-foreground ml-2">{item.detail}</span>
+                </div>
               </div>
-            </div>
-          ))}
-          <p className="text-xs text-muted-foreground pt-1 leading-relaxed">
-            Хочеш швидко — напиши менеджеру. Хочеш сам — пройди підбір.
-          </p>
-        </motion.div>
+            ))}
+            <p className="text-xs text-muted-foreground pt-1 leading-relaxed">
+              Хочеш швидко — напиши менеджеру. Хочеш сам — пройди підбір.
+            </p>
+          </motion.div>
+        </div>
       </div>
-    </div>
-    <LanguageLevelDialog open={levelDialogOpen} onOpenChange={setLevelDialogOpen} />
-  </section>
+      <LanguageLevelDialog open={levelDialogOpen} onOpenChange={setLevelDialogOpen} />
+    </section>
   );
 };
 
