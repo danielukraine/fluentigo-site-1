@@ -53,7 +53,7 @@ const packages: Package[] = [
       ],
     },
     premium: {
-      rules: ["Відміна: за 2 години", "Спікінг (розмовний клуб)"],
+      rules: ["Переноси без обмежень", "Відміна: за 2 години", "Спікінг (розмовний клуб)"],
       prices: [
         { label: "A1–A2–B1", price: "750 грн" },
         { label: "B2–C1", price: "800 грн" },
@@ -203,10 +203,10 @@ const PricingSection = () => {
                     <button
                       type="button"
                       onClick={() => setFlippedCardId(isFlipped ? null : pkg.id)}
-                      className="absolute right-4 top-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-accent/80 text-muted-foreground transition-colors duration-100 hover:text-foreground"
+                      className="absolute right-4 top-4 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-accent/80 text-muted-foreground transition-colors duration-100 hover:text-foreground"
                       aria-label={isFlipped ? "Показати деталі тарифу" : "Показати додаткову інформацію"}
                     >
-                      <Info size={24} />
+                      <Info size={16} />
                     </button>
                   )}
 

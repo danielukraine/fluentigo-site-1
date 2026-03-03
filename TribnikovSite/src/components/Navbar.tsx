@@ -82,10 +82,10 @@ const Navbar = () => {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
-            transition={{ duration: shouldReduceMotion ? 0.08 : 0.12, ease: "easeOut" }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
+            transition={{ duration: shouldReduceMotion ? 0.1 : 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="md:hidden bg-card/95 border-b"
           >
             <div className="px-6 pb-6 pt-3 space-y-3">

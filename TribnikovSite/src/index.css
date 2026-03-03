@@ -143,6 +143,6 @@
   .transition-colors,
   .transition-opacity,
   .transition-transform {
-    transition-duration: 120ms !important;
+    transition-duration: 180ms !important;
   }
 }
