@@ -4,16 +4,17 @@ import { useShouldReduceMotion } from "@/hooks/use-motion-preferences";
 
 const formats = [
   {
-    tag: "Індивідуально",
+    tag: "Індивідуальний формат",
     badge: "1-на-1",
-    title: "Standard / Intensive / Premium",
+    title: "Персональна програма під твою ціль",
     items: ["обираєш викладача під ціль", "працюємо пакетами (результат)", "план + домашка + фідбек"],
-    link: "Дізнатись більше",
+    link: "Дізнатися більше",
+    href: "#pricing-adults",
   },
   {
-    tag: "Групи",
+    tag: "Груповий формат",
     badge: "A1–B2",
-    title: "Ти купуєш цілий рівень",
+    title: "Навчання в групах одного рівня",
     desc: 'У групах запис іде на рівень (A1/A2/B1/B2), а не на "разові уроки".',
     table: {
       headers: ["", "Standard", "Intensive"],
@@ -23,14 +24,16 @@ const formats = [
         ["Тривалість", "8–12 тиж", "5–8 тиж"],
       ],
     },
-    link: "Дізнатись про рівні",
+    link: "Дізнатися більше",
+    href: "#pricing-group",
   },
   {
-    tag: "Розмовний клуб",
+    tag: "Розмовний формат",
     badge: "Speaking",
-    title: "Практика говоріння",
+    title: "Практика живого спілкування",
     items: ["тема + словник", "рольові сценарії", "фідбек після speaking"],
-    link: "Як проходить",
+    link: "Дізнатися більше",
+    href: "#pricing-speaking",
   },
 ];
 
@@ -73,8 +76,8 @@ const FormatsSection = () => {
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
-                  <span className="inline-block rounded-full bg-accent/60 px-3.5 py-1 text-xs font-semibold text-accent-foreground">{f.tag}</span>
-                  <span className="text-xs text-muted-foreground font-medium bg-muted/50 rounded-full px-2.5 py-0.5">{f.badge}</span>
+                  <span className="inline-block rounded-full bg-accent/60 px-4 py-1.5 text-[13px] font-semibold text-accent-foreground">{f.tag}</span>
+                  <span className="text-[13px] text-muted-foreground font-medium bg-muted/50 rounded-full px-3 py-1">{f.badge}</span>
                 </div>
                 <h3 className="text-lg font-bold mb-3">{f.title}</h3>
                 {f.desc && <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{f.desc}</p>}
@@ -111,7 +114,7 @@ const FormatsSection = () => {
                   </div>
                 )}
               </div>
-              <a href="#pricing" className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all duration-150 sm:hover:gap-2.5">
+              <a href={f.href} className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all duration-150 sm:hover:gap-2.5">
                 {f.link} <ArrowRight size={14} />
               </a>
             </motion.div>

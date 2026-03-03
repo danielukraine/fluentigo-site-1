@@ -191,6 +191,7 @@ const PricingSection = () => {
             return (
               <motion.div
                 key={pkg.id}
+                id={`pricing-${pkg.id}`}
                 custom={i}
                 initial={shouldReduceMotion ? false : "hidden"}
                 whileInView={shouldReduceMotion ? undefined : "visible"}

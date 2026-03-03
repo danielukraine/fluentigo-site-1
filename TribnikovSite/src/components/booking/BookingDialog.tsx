@@ -226,9 +226,6 @@ export function BookingDialog({
         ? `Крок ${step}/${totalSteps}`
         : "Постав питання — підберемо варіант і час.";
 
-  const canGoNext = !isWizard || (step === 1 && !!state.language) || (step === 2 && !!state.goal);
-  const canFinish = !!state.language && !!state.goal && !!state.teacher;
-
   const goBack = () => {
     if (screen === "wizard") {
       if (step <= 1) setScreen("entry");
@@ -238,12 +235,6 @@ export function BookingDialog({
     setScreen("entry");
   };
 
-  const goNext = () => {
-    if (!isWizard) return;
-    setStep((s) => Math.min(totalSteps, s + 1));
-  };
-
-  const managerLink = withTelegramText(MANAGER_TELEGRAM_URL, buildTelegramMessage(state));
   const teachersForLanguage = state.language ? teachers.filter((t) => t.languages.includes(state.language)) : [];
 
   return (
@@ -422,7 +413,10 @@ export function BookingDialog({
                               title={l.title}
                               desc={l.desc}
                               badge={l.badge}
-                              onClick={() => setState((s) => ({ ...s, language: l.id, goal: undefined, teacher: undefined }))}
+                              onClick={() => {
+                                setState((s) => ({ ...s, language: l.id, goal: undefined, teacher: undefined }));
+                                setStep(2);
+                              }}
                             />
                           ))}
                         </div>
@@ -450,14 +444,17 @@ export function BookingDialog({
                               title={g.title}
                               desc={g.desc}
                               icon={g.icon}
-                              onClick={() => setState((s) => ({ ...s, goal: g.id, teacher: undefined }))}
+                              onClick={() => {
+                                setState((s) => ({ ...s, goal: g.id, teacher: undefined }));
+                                setStep(3);
+                              }}
                             />
                           ))}
                         </div>
 
                         <div className="rounded-2xl bg-muted/40 p-4 ring-1 ring-border/40">
                           <p className="text-sm text-muted-foreground leading-relaxed">
-                            Далі — обереш викладача, і натиснеш <span className="font-semibold text-foreground">«Написати»</span>.
+                            Після вибору цілі одразу перейдеш до підбору викладача.
                           </p>
                         </div>
                       </>
@@ -490,7 +487,12 @@ export function BookingDialog({
                                   teacher={t}
                                   selected={state.teacher === t.id}
                                   recommended={recommended}
-                                  onClick={() => setState((s) => ({ ...s, teacher: t.id }))}
+                                  onClick={() => {
+                                    const nextState = { ...state, teacher: t.id };
+                                    setState(nextState);
+                                    window.open(withTelegramText(MANAGER_TELEGRAM_URL, buildTelegramMessage(nextState)), "_blank", "noopener,noreferrer");
+                                    onOpenChange(false);
+                                  }}
                                 />
                               );
                             })}
@@ -499,14 +501,14 @@ export function BookingDialog({
 
                         <div className="rounded-2xl bg-muted/40 p-4 ring-1 ring-border/40">
                           <p className="text-sm text-muted-foreground leading-relaxed">
-                            Не впевнений у виборі? Можеш повернутися назад або написати менеджеру — підберемо викладача під твою ціль.
+                            Після вибору викладача одразу відкриємо Telegram для запису.
                           </p>
                         </div>
                       </>
                     )}
 
                     {/* Footer nav */}
-                    <div className="mt-2 flex items-center justify-between gap-3">
+                    <div className="mt-2 flex items-center justify-start gap-3">
                       <button
                         type="button"
                         onClick={goBack}
@@ -514,41 +516,6 @@ export function BookingDialog({
                       >
                         <ArrowLeft className="h-4 w-4" /> Назад
                       </button>
-
-                      {step < totalSteps ? (
-                        <button
-                          type="button"
-                          onClick={goNext}
-                          disabled={!canGoNext}
-                          className={cn(
-                            "inline-flex h-11 min-w-[120px] items-center justify-center gap-2 rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all",
-                            "hover:shadow-primary/30 disabled:opacity-50 disabled:shadow-none disabled:hover:shadow-none",
-                          )}
-                        >
-                          Далі <ArrowRight className="h-4 w-4" />
-                        </button>
-                      ) : (
-                        <a
-                          href={canFinish ? managerLink : "#"}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => {
-                            if (!canFinish) {
-                              e.preventDefault();
-                              return;
-                            }
-                            onOpenChange(false);
-                          }}
-                          aria-disabled={!canFinish}
-                          className={cn(
-                            "inline-flex h-11 min-w-[120px] items-center justify-center gap-2 rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all",
-                            "hover:shadow-primary/30",
-                            !canFinish && "pointer-events-none opacity-50 shadow-none",
-                          )}
-                        >
-                          Написати <ArrowRight className="h-4 w-4" />
-                        </a>
-                      )}
                     </div>
                   </motion.div>
                 )}
