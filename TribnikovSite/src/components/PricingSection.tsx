@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Check, Info, Star, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { useBookingDialog } from "@/components/booking/BookingDialogProvider";
+import { useShouldReduceMotion } from "@/hooks/use-motion-preferences";
 
 type Package = {
   id: string;
@@ -16,6 +17,50 @@ type Package = {
 
 const packages: Package[] = [
   {
+    id: "kids",
+    title: "Індивідуально — діти",
+    subtitle: "Персональний темп, ігрове навчання",
+    levels: "A1 / A2 / B1",
+    extraInfo: {
+      title: "Індивідуальні заняття для дітей",
+      description:
+        "Заняття проходять у дружній ігровій формі з використанням карток, інтерактивних завдань, візуальних матеріалів і розмовної практики. Уроки допомагають дитині поступово звикнути до мови, розширити словниковий запас і навчитися використовувати її природно та без страху.",
+    },
+    standard: {
+      rules: ["2 екстрених переноси/місяць", "Відміна: за 8 годин", "Не можна переносити на новий місяць"],
+      prices: [{ label: "A1–A2–B1", price: "600 грн" }],
+    },
+    premium: {
+      rules: ["Переноси без обмежень", "Відміна: за 2 години", "Спікінг (розмовний клуб)"],
+      prices: [{ label: "A1–A2–B1", price: "700 грн" }],
+    },
+  },
+  {
+    id: "adults",
+    title: "Індивідуально — дорослі",
+    subtitle: "Навчання під цілі: робота, переїзд, іспити",
+    levels: "A1 / A2 / B1 / B2 / C1",
+    extraInfo: {
+      title: "Індивідуальні заняття для дорослих",
+      description:
+        "Уроки проходять у форматі персональної роботи з викладачем і будуються навколо цілей учня: робота, переїзд, іспити або розмовна практика. На заняттях поєднуються пояснення матеріалу, вправи й активна мовна практика, щоб мова одразу переходила в навичку.",
+    },
+    standard: {
+      rules: ["Відміна: за 8 годин", "Не можна переносити заняття на новий місяць"],
+      prices: [
+        { label: "A1–A2–B1", price: "650 грн" },
+        { label: "B2–C1", price: "750 грн" },
+      ],
+    },
+    premium: {
+      rules: ["Відміна: за 2 години", "Спікінг (розмовний клуб)"],
+      prices: [
+        { label: "A1–A2–B1", price: "750 грн" },
+        { label: "B2–C1", price: "800 грн" },
+      ],
+    },
+  },
+  {
     id: "group",
     title: "Групові заняття",
     subtitle: "Системне навчання: граматика + лексика + говоріння",
@@ -27,14 +72,14 @@ const packages: Package[] = [
         "Уроки проходять у мінігрупах одного рівня, де учні разом вивчають теми, виконують завдання й активно практикують мовлення. Такий формат створює живу атмосферу спілкування, допомагає швидше звикнути до мови та підтримує мотивацію завдяки спільному навчанню.",
     },
     standard: {
-      rules: ["Відміна: мінімум за 8 годин", "Не можна переносити заняття на новий місяць"],
+      rules: ["Перевірка домашнього завдання", "Підтримка вчителя під час уроку"],
       prices: [
         { label: "A1–A2–B1", price: "300 грн" },
         { label: "B2", price: "400 грн" },
       ],
     },
     premium: {
-      rules: ["Відміна: мінімум за 2 години", "Можна переносити залишки на новий місяць"],
+      rules: ["Спікінг (розмовний клуб)", "Робота в менших групах", "Підтримка та консультації між заняттями"],
       prices: [
         { label: "A1–A2–B1", price: "350 грн" },
         { label: "B2", price: "450 грн" },
@@ -60,54 +105,10 @@ const packages: Package[] = [
       ],
     },
     premium: {
-      rules: ["Відміна: за 2 години", "Можна переносити залишки на новий місяць"],
+      rules: ["Спікінг (розмовний клуб)", "Робота в менших групах", "Підтримка та консультації між заняттями"],
       prices: [
         { label: "A2–B1", price: "400 грн" },
         { label: "B2", price: "450 грн" },
-      ],
-    },
-  },
-  {
-    id: "kids",
-    title: "Індивідуально — діти",
-    subtitle: "Персональний темп, ігрове навчання",
-    levels: "A1 / A2 / B1",
-    extraInfo: {
-      title: "Індивідуальні заняття для дітей",
-      description:
-        "Заняття проходять у дружній ігровій формі з використанням карток, інтерактивних завдань, візуальних матеріалів і розмовної практики. Уроки допомагають дитині поступово звикнути до мови, розширити словниковий запас і навчитися використовувати її природно та без страху.",
-    },
-    standard: {
-      rules: ["2 екстрених переноси/місяць", "Відміна: за 8 годин", "Не можна переносити на новий місяць"],
-      prices: [{ label: "A1–A2–B1", price: "600 грн" }],
-    },
-    premium: {
-      rules: ["Переноси без обмежень", "Відміна: за 2 години", "Можна переносити залишки на новий місяць"],
-      prices: [{ label: "A1–A2–B1", price: "700 грн" }],
-    },
-  },
-  {
-    id: "adults",
-    title: "Індивідуально — дорослі",
-    subtitle: "Навчання під цілі: робота, переїзд, іспити",
-    levels: "A1 / A2 / B1 / B2 / C1",
-    extraInfo: {
-      title: "Індивідуальні заняття для дорослих",
-      description:
-        "Уроки проходять у форматі персональної роботи з викладачем і будуються навколо цілей учня: робота, переїзд, іспити або розмовна практика. На заняттях поєднуються пояснення матеріалу, вправи й активна мовна практика, щоб мова одразу переходила в навичку.",
-    },
-    standard: {
-      rules: ["Відміна: за 8 годин", "Не можна переносити заняття на новий місяць"],
-      prices: [
-        { label: "A1–A2–B1", price: "650 грн" },
-        { label: "B2–C1", price: "750 грн" },
-      ],
-    },
-    premium: {
-      rules: ["Відміна: за 2 години", "Можна переносити залишки на новий місяць"],
-      prices: [
-        { label: "A1–A2–B1", price: "750 грн" },
-        { label: "B2–C1", price: "800 грн" },
       ],
     },
   },
@@ -126,15 +127,20 @@ const PricingSection = () => {
   const [activeTab, setActiveTab] = useState<"standard" | "premium">("standard");
   const [flippedCardId, setFlippedCardId] = useState<string | null>(null);
   const { openBooking } = useBookingDialog();
+  const shouldReduceMotion = useShouldReduceMotion();
+  const orderedPackages = useMemo(() => {
+    const order = ["adults", "kids", "group", "speaking"];
+    return [...packages].sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
+  }, []);
 
   return (
     <section id="pricing" className="py-20 md:py-28 bg-card/50">
       <div className="container mx-auto px-4 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
         >
           <span className="text-xs font-semibold text-primary uppercase tracking-widest">Прайс</span>
           <h2 className="text-3xl md:text-4xl font-extrabold mt-2 mb-2">Пакети та ціни</h2>
@@ -145,7 +151,7 @@ const PricingSection = () => {
         <div className="inline-flex rounded-2xl bg-muted/60 backdrop-blur-sm p-1.5 mb-12 ring-1 ring-border/30">
           <button
             onClick={() => setActiveTab("standard")}
-            className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
+            className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-100 ${
               activeTab === "standard"
                 ? "bg-card shadow-md text-foreground"
                 : "text-muted-foreground hover:text-foreground"
@@ -155,7 +161,7 @@ const PricingSection = () => {
           </button>
           <button
             onClick={() => setActiveTab("premium")}
-            className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 ${
+            className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-100 flex items-center gap-1.5 ${
               activeTab === "premium"
                 ? "bg-card shadow-md text-foreground"
                 : "text-muted-foreground hover:text-foreground"
@@ -173,10 +179,11 @@ const PricingSection = () => {
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-background to-transparent md:hidden" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-background to-transparent md:hidden" />
           <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 pl-[8vw] pr-[8vw] [scrollbar-width:thin] md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:pb-0 md:pl-0 md:pr-0">
-          {packages.map((pkg, i) => {
+          {orderedPackages.map((pkg, i) => {
             const plan = activeTab === "standard" ? pkg.standard : pkg.premium;
             const isFlipped = flippedCardId === pkg.id;
-            const cardClassName = `rounded-3xl border p-7 transition-all duration-300 ${
+            const groupLabel = pkg.id === "group" && activeTab === "premium" ? "4–6 осіб" : pkg.group;
+            const cardClassName = `rounded-3xl border p-7 transition-all duration-150 ${
               activeTab === "premium"
                 ? "border-premium/30 bg-gradient-to-br from-premium/[0.03] to-transparent shadow-sm"
                 : "bg-card border-border/50 hover:border-border"
@@ -185,8 +192,8 @@ const PricingSection = () => {
               <motion.div
                 key={pkg.id}
                 custom={i}
-                initial="hidden"
-                whileInView="visible"
+                initial={shouldReduceMotion ? false : "hidden"}
+                whileInView={shouldReduceMotion ? undefined : "visible"}
                 viewport={{ once: true, margin: "-40px" }}
                 variants={cardVariants}
                 className="relative h-full w-[84vw] shrink-0 snap-center md:w-auto md:shrink"
@@ -196,17 +203,17 @@ const PricingSection = () => {
                     <button
                       type="button"
                       onClick={() => setFlippedCardId(isFlipped ? null : pkg.id)}
-                      className="absolute right-4 top-4 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-accent/80 text-muted-foreground transition-colors hover:text-foreground"
+                      className="absolute right-4 top-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-accent/80 text-muted-foreground transition-colors duration-100 hover:text-foreground"
                       aria-label={isFlipped ? "Показати деталі тарифу" : "Показати додаткову інформацію"}
                     >
-                      <Info size={16} />
+                      <Info size={24} />
                     </button>
                   )}
 
                   <div
                     className={
                       pkg.extraInfo
-                        ? `relative h-full transition-transform duration-700 [transform-style:preserve-3d] ${isFlipped ? "[transform:rotateY(180deg)]" : ""}`
+                        ? `relative h-full transition-transform ${shouldReduceMotion ? "duration-0" : "duration-500"} [transform-style:preserve-3d] ${isFlipped ? "[transform:rotateY(180deg)]" : ""}`
                         : "h-full"
                     }
                   >
@@ -222,13 +229,13 @@ const PricingSection = () => {
                       <p className="text-sm text-muted-foreground mb-3">{pkg.subtitle}</p>
                       <div className="flex flex-wrap gap-2 mb-5">
                         <span className="text-xs bg-accent/60 text-accent-foreground rounded-full px-3 py-1 font-medium">{pkg.levels}</span>
-                        {pkg.group && (
-                          <span className="text-xs bg-secondary/60 text-secondary-foreground rounded-full px-3 py-1 font-medium">{pkg.group}</span>
+                        {groupLabel && (
+                          <span className="text-xs bg-secondary/60 text-secondary-foreground rounded-full px-3 py-1 font-medium">{groupLabel}</span>
                         )}
                       </div>
 
                       {/* Rules */}
-                      <ul className="mb-6 min-h-[96px] space-y-2">
+                      <ul className="mb-6 min-h-[136px] space-y-2.5">
                         {plan.rules.map((r) => (
                           <li key={r} className="flex items-start gap-2.5 text-sm text-muted-foreground">
                             <Check size={15} className="text-primary mt-0.5 shrink-0" />
@@ -238,7 +245,7 @@ const PricingSection = () => {
                       </ul>
 
                       {/* Prices */}
-                      <div className="mt-auto min-h-[112px] space-y-2">
+                      <div className="mt-auto min-h-[132px] space-y-2.5">
                         {plan.prices.map((p) => (
                           <div
                             key={p.label}
@@ -275,10 +282,10 @@ const PricingSection = () => {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.3 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.4, delay: shouldReduceMotion ? 0 : 0.3 }}
           className="mt-10 rounded-2xl bg-accent/20 backdrop-blur-sm border border-border/30 p-6 max-w-2xl"
         >
           <p className="text-sm text-muted-foreground leading-relaxed">

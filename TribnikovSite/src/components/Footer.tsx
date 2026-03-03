@@ -1,4 +1,5 @@
-import { CONTACT_EMAIL, CONTACT_PHONE, MANAGER_TELEGRAM_URL } from "@/config/contact";
+import { Instagram, Phone, Send } from "lucide-react";
+import { CONTACT_INSTAGRAM_URL, CONTACT_PHONE, MANAGER_TELEGRAM_URL } from "@/config/contact";
 
 const Footer = () => (
   <footer className="border-t border-border/30 py-10">
@@ -18,21 +19,26 @@ const Footer = () => (
           href={MANAGER_TELEGRAM_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-xl border border-border/50 bg-card/60 px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
+          className="inline-flex items-center gap-2.5 rounded-xl border border-border/50 bg-card/60 px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
         >
+          <Send size={16} />
           Звʼяжіться з нами в Telegram
         </a>
         <a
           href={`tel:${CONTACT_PHONE.replace(/\s+/g, "")}`}
-          className="rounded-xl border border-border/50 bg-card/60 px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
+          className="inline-flex items-center gap-2.5 rounded-xl border border-border/50 bg-card/60 px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
         >
+          <Phone size={16} />
           Наш номер телефону: {CONTACT_PHONE}
         </a>
         <a
-          href={`mailto:${CONTACT_EMAIL}`}
-          className="rounded-xl border border-border/50 bg-card/60 px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
+          href={CONTACT_INSTAGRAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2.5 rounded-xl border border-border/50 bg-card/60 px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
         >
-          Наша електронна пошта: {CONTACT_EMAIL}
+          <Instagram size={16} />
+          Наш Instagram
         </a>
       </div>
     </div>

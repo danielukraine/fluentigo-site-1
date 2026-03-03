@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useBookingDialog } from "@/components/booking/BookingDialogProvider";
 import { TEACHER_BOT_TELEGRAM_URL } from "@/config/contact";
+import { useShouldReduceMotion } from "@/hooks/use-motion-preferences";
 
 const navLinks = [
   { label: "Курси", href: "#formats" },
@@ -15,6 +16,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { openBooking } = useBookingDialog();
+  const shouldReduceMotion = useShouldReduceMotion();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -24,7 +26,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-[background-color,border-color,box-shadow] duration-150 ${
+      className={`sticky top-0 z-50 transition-[background-color,border-color,box-shadow] duration-100 md:duration-150 ${
         scrolled
           ? "bg-card/95 md:bg-card/90 md:backdrop-blur-xl border-b shadow-sm"
           : "bg-transparent"
@@ -80,10 +82,10 @@ const Navbar = () => {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -6 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.12, ease: "easeOut" }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
+            transition={{ duration: shouldReduceMotion ? 0.08 : 0.12, ease: "easeOut" }}
             className="md:hidden bg-card/95 border-b"
           >
             <div className="px-6 pb-6 pt-3 space-y-3">
