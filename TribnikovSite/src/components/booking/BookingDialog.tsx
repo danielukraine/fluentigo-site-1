@@ -8,7 +8,9 @@ import {
   CheckCircle2,
   GraduationCap,
   Heart,
+  Instagram,
   MessageCircle,
+  Send,
   Users,
   Wand2,
   X,
@@ -17,7 +19,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogClose, DialogOverlay, DialogPortal } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { MANAGER_TELEGRAM_URL } from "@/config/contact";
+import { CONTACT_INSTAGRAM_URL, MANAGER_TELEGRAM_URL } from "@/config/contact";
 import { languageOptions as languages, teachers, type GoalId, type LanguageId, type Teacher } from "@/data/teachers";
 
 type BookingScreen = "entry" | "wizard" | "manager";
@@ -362,15 +364,57 @@ export function BookingDialog({
                         Ми уточнимо твою ціль, рівень і темп — та запропонуємо найзручніший варіант пробного уроку.
                       </p>
 
-                      <a
-                        href={withTelegramText(MANAGER_TELEGRAM_URL, "Привіт! Хочу записатися на пробний урок.")}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => onOpenChange(false)}
-                        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-4 text-sm font-semibold text-primary-foreground shadow-xl shadow-primary/25 transition-all hover:shadow-primary/35"
-                      >
-                        Написати в Telegram <ArrowRight className="h-4 w-4" />
-                      </a>
+                      <div className="mt-5 space-y-3">
+                        <a
+                          href={withTelegramText(MANAGER_TELEGRAM_URL, "Привіт! Хочу записатися на пробний урок.")}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => onOpenChange(false)}
+                          className={cn(
+                            "group relative inline-flex w-full overflow-hidden rounded-2xl border border-border/70 px-5 py-3.5 text-sm font-semibold text-foreground shadow-lg transition-all",
+                            "bg-gradient-to-r from-white via-slate-50 to-slate-100",
+                            "hover:shadow-xl hover:shadow-slate-300/20",
+                          )}
+                        >
+                          <span className="pointer-events-none absolute -top-1 left-8 text-sky-400/20">
+                            <Send className="h-8 w-8" />
+                          </span>
+                          <span className="pointer-events-none absolute -bottom-2 right-10 text-blue-500/15">
+                            <Send className="h-10 w-10" />
+                          </span>
+                          <span className="pointer-events-none absolute top-1 right-4 text-blue-600/20">
+                            <Send className="h-5 w-5" />
+                          </span>
+                          <span className="relative z-10 inline-flex w-full items-center justify-center gap-2">
+                            Написати в Telegram <Send className="h-4 w-4" />
+                          </span>
+                        </a>
+
+                        <a
+                          href={CONTACT_INSTAGRAM_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => onOpenChange(false)}
+                          className={cn(
+                            "group relative inline-flex w-full overflow-hidden rounded-2xl border border-border/70 px-5 py-3.5 text-sm font-semibold text-foreground shadow-lg transition-all",
+                            "bg-gradient-to-r from-white via-slate-50 to-slate-100",
+                            "hover:shadow-xl hover:shadow-slate-300/20",
+                          )}
+                        >
+                          <span className="pointer-events-none absolute -top-2 left-8 text-fuchsia-500/18">
+                            <Instagram className="h-8 w-8" />
+                          </span>
+                          <span className="pointer-events-none absolute -bottom-2 right-10 text-orange-500/16">
+                            <Instagram className="h-10 w-10" />
+                          </span>
+                          <span className="pointer-events-none absolute top-1 right-4 text-pink-500/20">
+                            <Instagram className="h-5 w-5" />
+                          </span>
+                          <span className="relative z-10 inline-flex w-full items-center justify-center gap-2">
+                            Написати в Instagram <Instagram className="h-4 w-4" />
+                          </span>
+                        </a>
+                      </div>
 
                       <p className="mt-3 text-xs text-muted-foreground">
                         Відповідаємо протягом дня. Якщо зручно — одразу напиши свій рівень або що саме хочеш прокачати.
@@ -407,7 +451,7 @@ export function BookingDialog({
 
                         <div className="grid min-w-0 gap-3 md:grid-cols-2">
                           {languages.map((l) => (
-                            <ChoiceCard
+                                <ChoiceCard
                               key={l.id}
                               selected={state.language === l.id}
                               title={l.title}
@@ -438,7 +482,7 @@ export function BookingDialog({
 
                         <div className="grid gap-3 md:grid-cols-2">
                           {goals.map((g) => (
-                            <ChoiceCard
+                                <ChoiceCard
                               key={g.id}
                               selected={state.goal === g.id}
                               title={g.title}
@@ -488,10 +532,7 @@ export function BookingDialog({
                                   selected={state.teacher === t.id}
                                   recommended={recommended}
                                   onClick={() => {
-                                    const nextState = { ...state, teacher: t.id };
-                                    setState(nextState);
-                                    window.open(withTelegramText(MANAGER_TELEGRAM_URL, buildTelegramMessage(nextState)), "_blank", "noopener,noreferrer");
-                                    onOpenChange(false);
+                                    setState((s) => ({ ...s, teacher: t.id }));
                                   }}
                                 />
                               );
@@ -499,9 +540,71 @@ export function BookingDialog({
                           </div>
                         </div>
 
+                        <div className="space-y-3 rounded-2xl border border-border/50 bg-card/80 p-4 ring-1 ring-border/30">
+                          <button
+                            type="button"
+                            disabled={!state.teacher}
+                            onClick={() => {
+                              window.open(withTelegramText(MANAGER_TELEGRAM_URL, buildTelegramMessage(state)), "_blank", "noopener,noreferrer");
+                              onOpenChange(false);
+                            }}
+                            className={cn(
+                              "group relative w-full overflow-hidden rounded-2xl border border-border/70 px-5 py-3.5 text-left text-sm font-semibold text-foreground shadow-lg transition-all",
+                              "bg-gradient-to-r from-white via-slate-50 to-slate-100",
+                              "hover:shadow-xl hover:shadow-slate-300/20",
+                              "disabled:cursor-not-allowed disabled:opacity-60",
+                            )}
+                          >
+                            <span className="pointer-events-none absolute -top-1 left-8 text-sky-400/20">
+                              <Send className="h-8 w-8" />
+                            </span>
+                            <span className="pointer-events-none absolute -bottom-2 right-10 text-blue-500/15">
+                              <Send className="h-10 w-10" />
+                            </span>
+                            <span className="pointer-events-none absolute top-1 right-4 text-blue-600/20">
+                              <Send className="h-5 w-5" />
+                            </span>
+
+                            <span className="relative z-10 inline-flex w-full items-center justify-center gap-2">
+                              Написати в Telegram
+                              <Send className="h-4 w-4" />
+                            </span>
+                          </button>
+
+                          <button
+                            type="button"
+                            disabled={!state.teacher}
+                            onClick={() => {
+                              window.open(CONTACT_INSTAGRAM_URL, "_blank", "noopener,noreferrer");
+                              onOpenChange(false);
+                            }}
+                            className={cn(
+                              "group relative w-full overflow-hidden rounded-2xl border border-border/70 px-5 py-3.5 text-left text-sm font-semibold text-foreground shadow-lg transition-all",
+                              "bg-gradient-to-r from-white via-slate-50 to-slate-100",
+                              "hover:shadow-xl hover:shadow-slate-300/20",
+                              "disabled:cursor-not-allowed disabled:opacity-60",
+                            )}
+                          >
+                            <span className="pointer-events-none absolute -top-2 left-8 text-fuchsia-500/18">
+                              <Instagram className="h-8 w-8" />
+                            </span>
+                            <span className="pointer-events-none absolute -bottom-2 right-10 text-orange-500/16">
+                              <Instagram className="h-10 w-10" />
+                            </span>
+                            <span className="pointer-events-none absolute top-1 right-4 text-pink-500/20">
+                              <Instagram className="h-5 w-5" />
+                            </span>
+
+                            <span className="relative z-10 inline-flex w-full items-center justify-center gap-2">
+                              Написати в Instagram
+                              <Instagram className="h-4 w-4" />
+                            </span>
+                          </button>
+                        </div>
+
                         <div className="rounded-2xl bg-muted/40 p-4 ring-1 ring-border/40">
                           <p className="text-sm text-muted-foreground leading-relaxed">
-                            Після вибору викладача одразу відкриємо Telegram для запису.
+                            Обери викладача і натисни зручний канал для запису.
                           </p>
                         </div>
                       </>

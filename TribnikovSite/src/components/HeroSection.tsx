@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { BookOpen, ArrowRight, ListChecks, Users } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { useBookingDialog } from "@/components/booking/BookingDialogProvider";
 import { LanguageLevelDialog } from "@/components/LanguageLevelDialog";
 import { useShouldReduceMotion } from "@/hooks/use-motion-preferences";
 
 const steps = [
+  { id: "level-test", icon: ListChecks, title: "Визнач рівень мови", desc: "короткий тест за 1–2 хв" },
   { id: "teachers", icon: BookOpen, title: "Обери викладача", desc: "під твою ціль і стиль" },
-  { id: "packages", icon: Users, title: "Пакети", desc: "плани та вартість навчання" },
-  { id: "level-test", icon: ListChecks, title: "Визнач свій рівень мови", desc: "короткий тест за 1–2 хв" },
+  { id: "packages", icon: Users, title: "Обери формат навчання", desc: "індивідуально, група або клуб" },
 ];
 
 const fadeUp = {
@@ -46,12 +47,7 @@ const HeroSection = () => {
               transition={{ duration: shouldReduceMotion ? 0 : 0.5, delay: shouldReduceMotion ? 0 : 0.1 }}
               className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.1] tracking-tight"
             >
-              Онлайн-школа мов, де{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10">ти</span>
-                <span className="absolute inset-x-0 bottom-1 h-3 bg-highlight/80 rounded-sm -z-0" />
-              </span>{" "}
-              обираєш викладача.
+              Вивчай мови онлайн з викладачем, який підходить саме тобі
             </motion.h1>
 
             <motion.p
@@ -60,16 +56,17 @@ const HeroSection = () => {
               transition={{ duration: shouldReduceMotion ? 0 : 0.5, delay: shouldReduceMotion ? 0 : 0.2 }}
               className="text-lg text-muted-foreground max-w-xl leading-relaxed"
             >
-              3 формати: <strong className="text-foreground font-semibold">Індивідуально</strong>,{" "}
-              <strong className="text-foreground font-semibold">Групи A1–B2</strong> та{" "}
-              <strong className="text-foreground font-semibold">Розмовний клуб</strong>. Працюємо пакетами — щоб був результат.
+              <strong className="text-foreground font-semibold">Індивідуальні заняття</strong> •{" "}
+              <strong className="text-foreground font-semibold">Міні-групи</strong> •{" "}
+              <strong className="text-foreground font-semibold">Розмовний клуб</strong>. Підберемо викладача під твою ціль
+              і рівень. Перший урок — пробний.
             </motion.p>
 
             <motion.div
               initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: shouldReduceMotion ? 0 : 0.5, delay: shouldReduceMotion ? 0 : 0.3 }}
-              className="flex flex-wrap gap-3"
+              className="flex flex-col items-start gap-3"
             >
               <button
                 type="button"
@@ -79,6 +76,12 @@ const HeroSection = () => {
                 Записатися на пробний урок
                 <ArrowRight size={16} className="transition-transform duration-150 sm:group-hover:translate-x-0.5" />
               </button>
+              <Link
+                to="/quiz"
+                className="inline-flex w-full max-w-[92vw] items-center justify-center gap-2 rounded-2xl border border-border/70 bg-card/80 px-7 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-accent/40 sm:max-w-none sm:w-auto sm:rounded-xl"
+              >
+                Почати підбір <ArrowRight size={16} />
+              </Link>
             </motion.div>
 
             <div className="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-3">

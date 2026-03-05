@@ -4,6 +4,11 @@ import { motion } from "framer-motion";
 import { useBookingDialog } from "@/components/booking/BookingDialogProvider";
 import { useShouldReduceMotion } from "@/hooks/use-motion-preferences";
 
+type Plan = {
+  rules: string[];
+  prices: { label: string; price: string }[];
+};
+
 type Package = {
   id: string;
   title: string;
@@ -11,8 +16,9 @@ type Package = {
   levels: string;
   group?: string;
   extraInfo?: { title: string; description: string };
-  standard: { rules: string[]; prices: { label: string; price: string }[] };
-  premium: { rules: string[]; prices: { label: string; price: string }[] };
+  standard: Plan;
+  premium?: Plan;
+  intensive?: Plan;
 };
 
 const packages: Package[] = [
@@ -28,11 +34,11 @@ const packages: Package[] = [
     },
     standard: {
       rules: ["2 екстрених переноси/місяць", "Відміна: за 8 годин", "Не можна переносити на новий місяць"],
-      prices: [{ label: "A1–A2–B1", price: "600 грн" }],
+      prices: [{ label: "A1–A2–B1", price: "550 грн" }],
     },
     premium: {
       rules: ["Переноси без обмежень", "Відміна: за 2 години", "Спікінг (розмовний клуб)"],
-      prices: [{ label: "A1–A2–B1", price: "700 грн" }],
+      prices: [{ label: "A1–A2–B1", price: "650 грн" }],
     },
   },
   {
@@ -41,22 +47,29 @@ const packages: Package[] = [
     subtitle: "Навчання під цілі: робота, переїзд, іспити",
     levels: "A1 / A2 / B1 / B2 / C1",
     extraInfo: {
-      title: "Індивідуальні заняття для дорослих",
+      title: "Інтенсивно — дорослі",
       description:
-        "Уроки проходять у форматі персональної роботи з викладачем і будуються навколо цілей учня: робота, переїзд, іспити або розмовна практика. На заняттях поєднуються пояснення матеріалу, вправи й активна мовна практика, щоб мова одразу переходила в навичку.",
+        "Прискорене навчання для швидкого результату: робота, переїзд, іспити. 5 занять на тиждень, до 5 переносів або відмін занять та індивідуальний підхід із фокусом на покращення всіх слабких сторін.",
     },
     standard: {
       rules: ["Відміна: за 8 годин", "Не можна переносити заняття на новий місяць"],
       prices: [
-        { label: "A1–A2–B1", price: "650 грн" },
-        { label: "B2–C1", price: "750 грн" },
+        { label: "A1–A2–B1", price: "600 грн" },
+        { label: "B2–C1", price: "700 грн" },
       ],
     },
     premium: {
       rules: ["Переноси без обмежень", "Відміна: за 2 години", "Спікінг (розмовний клуб)"],
       prices: [
-        { label: "A1–A2–B1", price: "750 грн" },
-        { label: "B2–C1", price: "800 грн" },
+        { label: "A1–A2–B1", price: "700 грн" },
+        { label: "B2–C1", price: "750 грн" },
+      ],
+    },
+    intensive: {
+      rules: ["5 занять на тиждень", "До 5 переносів або відмін занять", "Максимум 5 занять можна перенести на наступний місяць"],
+      prices: [
+        { label: "A1–A2–B1", price: "550 грн" },
+        { label: "B2–C1", price: "600 грн" },
       ],
     },
   },
@@ -85,6 +98,10 @@ const packages: Package[] = [
         { label: "B2", price: "450 грн" },
       ],
     },
+    intensive: {
+      rules: ["3–5 занять на тиждень", "До 5 переносів або відмін занять", "Максимум 5 занять можна перенести на наступний місяць"],
+      prices: [{ label: "A1–B2", price: "250 грн" }],
+    },
   },
   {
     id: "speaking",
@@ -100,15 +117,8 @@ const packages: Package[] = [
     standard: {
       rules: ["Відміна: за 8 годин", "Не можна переносити заняття на новий місяць"],
       prices: [
-        { label: "A2–B1", price: "350 грн" },
-        { label: "B2", price: "400 грн" },
-      ],
-    },
-    premium: {
-      rules: ["Спікінг (розмовний клуб)", "Робота в менших групах", "Підтримка та консультації між заняттями"],
-      prices: [
-        { label: "A2–B1", price: "400 грн" },
-        { label: "B2", price: "450 грн" },
+        { label: "A2–B1", price: "250 грн" },
+        { label: "B2", price: "300 грн" },
       ],
     },
   },
@@ -124,7 +134,7 @@ const cardVariants = {
 };
 
 const PricingSection = () => {
-  const [activeTab, setActiveTab] = useState<"standard" | "premium">("standard");
+  const [activeTab, setActiveTab] = useState<"standard" | "premium" | "intensive">("standard");
   const [flippedCardId, setFlippedCardId] = useState<string | null>(null);
   const { openBooking } = useBookingDialog();
   const shouldReduceMotion = useShouldReduceMotion();
@@ -132,6 +142,10 @@ const PricingSection = () => {
     const order = ["adults", "kids", "group", "speaking"];
     return [...packages].sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
   }, []);
+  const visiblePackages = useMemo(
+    () => orderedPackages.filter((pkg) => (activeTab === "standard" ? pkg.standard : pkg[activeTab])),
+    [activeTab, orderedPackages]
+  );
 
   return (
     <section id="pricing" className="py-20 md:py-28 bg-card/50">
@@ -170,6 +184,16 @@ const PricingSection = () => {
             <Sparkles size={14} className="text-premium" />
             Premium
           </button>
+          <button
+            onClick={() => setActiveTab("intensive")}
+            className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-100 ${
+              activeTab === "intensive"
+                ? "bg-card shadow-md text-foreground ring-1 ring-lime-600/20"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Інтенсив
+          </button>
         </div>
 
         <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground md:hidden">
@@ -179,15 +203,25 @@ const PricingSection = () => {
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-background to-transparent md:hidden" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-background to-transparent md:hidden" />
           <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 pl-[8vw] pr-[8vw] [scrollbar-width:thin] md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:pb-0 md:pl-0 md:pr-0">
-          {orderedPackages.map((pkg, i) => {
-            const plan = activeTab === "standard" ? pkg.standard : pkg.premium;
+          {visiblePackages.map((pkg, i) => {
+            const plan = activeTab === "standard" ? pkg.standard : pkg[activeTab];
+            if (!plan) return null;
             const isFlipped = flippedCardId === pkg.id;
-            const groupLabel = pkg.id === "group" && activeTab === "premium" ? "4–6 осіб" : pkg.group;
+            const groupLabel =
+              pkg.id === "group" && (activeTab === "premium" || activeTab === "intensive") ? "4–6 осіб" : pkg.group;
             const cardClassName = `rounded-3xl border p-7 transition-all duration-150 ${
-              activeTab === "premium"
-                ? "border-premium/30 bg-gradient-to-br from-premium/[0.03] to-transparent shadow-sm"
-                : "bg-card border-border/50 hover:border-border"
+              activeTab === "intensive"
+                ? "border-lime-600/20 bg-gradient-to-br from-lime-500/[0.04] to-transparent shadow-sm"
+                : activeTab === "premium"
+                  ? "border-premium/30 bg-gradient-to-br from-premium/[0.03] to-transparent shadow-sm"
+                  : "bg-card border-border/50 hover:border-border"
             }`;
+            const pricePillClassName =
+              activeTab === "premium"
+                ? "rounded-2xl bg-accent/20 px-5 py-3"
+                : activeTab === "intensive"
+                  ? "rounded-2xl bg-lime-500/[0.08] px-5 py-3"
+                  : "rounded-2xl bg-accent/20 px-5 py-3";
             return (
               <motion.div
                 key={pkg.id}
@@ -226,6 +260,11 @@ const PricingSection = () => {
                             <Star size={12} /> Premium
                           </span>
                         )}
+                        {activeTab === "intensive" && (
+                          <span className="rounded-full bg-lime-500/10 px-2.5 py-1 text-xs font-semibold text-lime-700">
+                            Intensive
+                          </span>
+                        )}
                       </div>
                       <p className="text-sm text-muted-foreground mb-3">{pkg.subtitle}</p>
                       <div className="flex flex-wrap gap-2 mb-5">
@@ -250,10 +289,10 @@ const PricingSection = () => {
                         {plan.prices.map((p) => (
                           <div
                             key={p.label}
-                            className="flex items-center justify-between rounded-2xl bg-accent/20 px-5 py-3"
+                            className={`flex items-center justify-between ${pricePillClassName}`}
                           >
                             <span className="text-sm font-medium">{p.label}</span>
-                            <span className="text-lg font-bold text-primary">{p.price}</span>
+                            <span className={`text-lg font-bold ${activeTab === "intensive" ? "text-lime-700" : "text-primary"}`}>{p.price}</span>
                           </div>
                         ))}
                       </div>
@@ -291,7 +330,8 @@ const PricingSection = () => {
         >
           <p className="text-sm text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Standard</strong> — вигідна ціна і фіксований розклад.{" "}
-            <strong className="text-foreground">Premium</strong> — максимум гнучкості: коротка відміна і перенос занять на наступний місяць.
+            <strong className="text-foreground">Premium</strong> — максимум гнучкості: коротка відміна і додаткові опції.{" "}
+            <strong className="text-foreground">Інтенсив</strong> — прискорений темп із фокусом на швидкий результат.
           </p>
         </motion.div>
       </div>

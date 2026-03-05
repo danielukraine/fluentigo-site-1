@@ -34,7 +34,7 @@ const Navbar = () => {
     >
       <nav className="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
         <a href="#" className="flex items-center gap-2.5 text-xl font-extrabold tracking-tight">
-          <span className="inline-flex w-8 h-8 items-center justify-center rounded-xl bg-primary text-primary-foreground text-sm font-black">
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-primary text-base font-black text-primary-foreground">
             F
           </span>
           Fluentigo
