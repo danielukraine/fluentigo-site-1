@@ -401,14 +401,14 @@ export function BookingDialog({
                             "hover:shadow-xl hover:shadow-slate-300/20",
                           )}
                         >
-                          <span className="pointer-events-none absolute -top-2 left-8 text-fuchsia-500/18">
-                            <Instagram className="h-8 w-8" />
+                          <span className="pointer-events-none absolute -top-2 left-6 text-fuchsia-500/16">
+                            <Instagram className="h-7 w-7" />
                           </span>
-                          <span className="pointer-events-none absolute -bottom-2 right-10 text-orange-500/16">
-                            <Instagram className="h-10 w-10" />
+                          <span className="pointer-events-none absolute -bottom-2 right-7 text-orange-500/14">
+                            <Instagram className="h-9 w-9" />
                           </span>
-                          <span className="pointer-events-none absolute top-1 right-4 text-pink-500/20">
-                            <Instagram className="h-5 w-5" />
+                          <span className="pointer-events-none absolute top-1 right-20 text-pink-500/16">
+                            <Instagram className="h-4 w-4" />
                           </span>
                           <span className="relative z-10 inline-flex w-full items-center justify-center gap-2">
                             Написати в Instagram <Instagram className="h-4 w-4" />
@@ -585,14 +585,14 @@ export function BookingDialog({
                               "disabled:cursor-not-allowed disabled:opacity-60",
                             )}
                           >
-                            <span className="pointer-events-none absolute -top-2 left-8 text-fuchsia-500/18">
-                              <Instagram className="h-8 w-8" />
+                            <span className="pointer-events-none absolute -top-2 left-6 text-fuchsia-500/16">
+                              <Instagram className="h-7 w-7" />
                             </span>
-                            <span className="pointer-events-none absolute -bottom-2 right-10 text-orange-500/16">
-                              <Instagram className="h-10 w-10" />
+                            <span className="pointer-events-none absolute -bottom-2 right-7 text-orange-500/14">
+                              <Instagram className="h-9 w-9" />
                             </span>
-                            <span className="pointer-events-none absolute top-1 right-4 text-pink-500/20">
-                              <Instagram className="h-5 w-5" />
+                            <span className="pointer-events-none absolute top-1 right-20 text-pink-500/16">
+                              <Instagram className="h-4 w-4" />
                             </span>
 
                             <span className="relative z-10 inline-flex w-full items-center justify-center gap-2">

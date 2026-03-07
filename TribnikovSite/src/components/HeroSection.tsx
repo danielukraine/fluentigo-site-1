@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { BookOpen, ArrowRight, ListChecks, Users } from "lucide-react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { useBookingDialog } from "@/components/booking/BookingDialogProvider";
 import { LanguageLevelDialog } from "@/components/LanguageLevelDialog";
 import { useShouldReduceMotion } from "@/hooks/use-motion-preferences";
@@ -29,9 +28,8 @@ const HeroSection = () => {
       <div className="pointer-events-none absolute -bottom-20 -left-20 hidden h-[300px] w-[300px] rounded-full bg-accent/30 blur-3xl md:block" />
 
       <div className="container mx-auto px-4 md:px-8 relative">
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
-          {/* Left */}
-          <div className="lg:col-span-3 space-y-8">
+        <div className="grid items-start gap-8 lg:grid-cols-5 lg:gap-12">
+          <div className="space-y-8 lg:col-span-3">
             <motion.div
               initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -76,93 +74,63 @@ const HeroSection = () => {
                 Записатися на пробний урок
                 <ArrowRight size={16} className="transition-transform duration-150 sm:group-hover:translate-x-0.5" />
               </button>
-              <Link
-                to="/quiz"
-                className="inline-flex w-full max-w-[92vw] items-center justify-center gap-2 rounded-2xl border border-border/70 bg-card/80 px-7 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-accent/40 sm:max-w-none sm:w-auto sm:rounded-xl"
-              >
-                Почати підбір <ArrowRight size={16} />
-              </Link>
             </motion.div>
-
-            <div className="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-3">
-              {steps.map((s, i) => (
-                <motion.div
-                  key={s.id}
-                  custom={i}
-                  initial={shouldReduceMotion ? false : "hidden"}
-                  animate={shouldReduceMotion ? undefined : "visible"}
-                  variants={fadeUp}
-                  className="h-full rounded-2xl border border-border/50 bg-card/80 p-5 backdrop-blur-sm transition-all duration-150 sm:hover:border-primary/20 sm:hover:shadow-sm"
-                >
-                  <div className="flex h-full min-h-[122px] flex-col">
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-10 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
-                        <s.icon size={18} className="text-primary" />
-                      </div>
-                      <div>
-                        <p className="text-[1.35rem] font-bold leading-tight">{s.title}</p>
-                        <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
-                      </div>
-                    </div>
-                    {s.id === "teachers" && (
-                      <a
-                        href="#teachers"
-                        className="mt-auto inline-flex items-center gap-1 pt-3 text-sm font-semibold text-primary transition-opacity duration-150 sm:hover:opacity-80"
-                      >
-                        Переглянути викладачів <ArrowRight size={14} />
-                      </a>
-                    )}
-                    {s.id === "packages" && (
-                      <a
-                        href="#pricing"
-                        className="mt-auto inline-flex items-center gap-1 pt-3 text-sm font-semibold text-primary transition-opacity duration-150 sm:hover:opacity-80"
-                      >
-                        Переглянути пакети <ArrowRight size={14} />
-                      </a>
-                    )}
-                    {s.id === "level-test" && (
-                      <button
-                        type="button"
-                        onClick={() => setLevelDialogOpen(true)}
-                        className="mt-auto inline-flex items-center gap-1 pt-3 text-sm font-semibold text-primary transition-opacity duration-150 sm:hover:opacity-80"
-                      >
-                        Почати тест рівня <ArrowRight size={14} />
-                      </button>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </div>
 
-          {/* Right card */}
-          <motion.div
-            initial={shouldReduceMotion ? false : { opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : 0.3 }}
-            className="lg:col-span-2 bg-card/80 backdrop-blur-sm rounded-3xl border border-border/50 p-7 space-y-5 shadow-lg shadow-foreground/[0.03]"
-          >
-            <h3 className="text-lg font-bold">Як це працює</h3>
-            {[
-              { step: "01", label: "Підбір", detail: "мова → ціль → формат" },
-              { step: "02", label: "Пакет", detail: "Starter / Standard / Intensive" },
-              { step: "03", label: "Старт", detail: "пробний + план на 4–8 тижнів" },
-            ].map((item) => (
-              <div
-                key={item.step}
-                className="group flex items-center gap-4 rounded-2xl bg-accent/30 px-5 py-4 transition-colors duration-150 sm:hover:bg-accent/50"
+          <div className="lg:col-span-2" />
+        </div>
+
+        <div className="pt-8">
+          <h3 className="mb-4 text-lg font-bold">Як це працює</h3>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {steps.map((s, i) => (
+              <motion.div
+                key={s.id}
+                custom={i}
+                initial={shouldReduceMotion ? false : "hidden"}
+                animate={shouldReduceMotion ? undefined : "visible"}
+                variants={fadeUp}
+                className="h-full rounded-2xl border border-border/50 bg-card/80 p-5 backdrop-blur-sm transition-all duration-150 sm:hover:border-primary/20 sm:hover:shadow-sm"
               >
-                <span className="text-xs font-bold text-primary/60">{item.step}</span>
-                <div className="flex-1">
-                  <span className="font-semibold text-sm">{item.label}</span>
-                  <span className="text-xs text-muted-foreground ml-2">{item.detail}</span>
+                <div className="flex h-full min-h-[122px] flex-col">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                      <s.icon size={18} className="text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-[1.35rem] font-bold leading-tight">{s.title}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
+                    </div>
+                  </div>
+                  {s.id === "teachers" && (
+                    <a
+                      href="#teachers"
+                      className="mt-auto inline-flex items-center gap-1 pt-3 text-sm font-semibold text-primary transition-opacity duration-150 sm:hover:opacity-80"
+                    >
+                      Переглянути викладачів <ArrowRight size={14} />
+                    </a>
+                  )}
+                  {s.id === "packages" && (
+                    <a
+                      href="#pricing"
+                      className="mt-auto inline-flex items-center gap-1 pt-3 text-sm font-semibold text-primary transition-opacity duration-150 sm:hover:opacity-80"
+                    >
+                      Переглянути пакети <ArrowRight size={14} />
+                    </a>
+                  )}
+                  {s.id === "level-test" && (
+                    <button
+                      type="button"
+                      onClick={() => setLevelDialogOpen(true)}
+                      className="mt-auto inline-flex items-center gap-1 pt-3 text-sm font-semibold text-primary transition-opacity duration-150 sm:hover:opacity-80"
+                    >
+                      Почати тест рівня <ArrowRight size={14} />
+                    </button>
+                  )}
                 </div>
-              </div>
+              </motion.div>
             ))}
-            <p className="text-xs text-muted-foreground pt-1 leading-relaxed">
-              Хочеш швидко — напиши менеджеру. Хочеш сам — пройди підбір.
-            </p>
-          </motion.div>
+          </div>
         </div>
       </div>
       <LanguageLevelDialog open={levelDialogOpen} onOpenChange={setLevelDialogOpen} />

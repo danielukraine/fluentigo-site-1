@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { languageOptions, type LanguageId } from "@/data/teachers";
 import { MANAGER_TELEGRAM_URL } from "@/config/contact";
 
-type AgeId = "u12" | "13_18" | "18p";
+type AgeId = "u7" | "7_13" | "13_18" | "18p";
 type AudienceId = "self" | "child";
 type ChildGoalId = "school" | "development" | "move" | "custom";
 type ChildLevelId = "zero" | "beginner" | "intermediate" | "unknown";
@@ -29,10 +29,13 @@ type QuizState = {
 type Option<T extends string> = { id: T; label: string };
 
 const ageOptions: Option<AgeId>[] = [
-  { id: "u12", label: "До 12" },
+  { id: "u7", label: "Менше 7" },
+  { id: "7_13", label: "7-13" },
   { id: "13_18", label: "13-18" },
   { id: "18p", label: "18+" },
 ];
+
+const selfAgeOptions: Option<AgeId>[] = ageOptions.filter((x) => x.id === "13_18" || x.id === "18p");
 
 const audienceOptions: Option<AudienceId>[] = [
   { id: "self", label: "Для себе" },
@@ -190,7 +193,7 @@ const Quiz = () => {
       {
         key: "age",
         title: state.audience === "child" ? "Скільки років дитині?" : "Скільки вам років?",
-        options: state.audience === "self" ? ageOptions.filter((x) => x.id !== "u12") : ageOptions,
+        options: state.audience === "self" ? selfAgeOptions : ageOptions,
       },
     ];
 
@@ -315,6 +318,11 @@ const Quiz = () => {
                 </p>
                 <h1 className="mt-2 text-2xl font-extrabold tracking-tight md:text-3xl">{current.title}</h1>
                 {"hint" in current && current.hint && <p className="mt-2 text-sm text-muted-foreground">{current.hint}</p>}
+                {current.key === "childInterest" && (
+                  <p className="mt-3 rounded-xl border border-border/60 bg-muted/40 px-3 py-2 text-sm font-medium text-foreground">
+                    Це допоможе нам адаптувати теми уроків під інтереси дитини.
+                  </p>
+                )}
               </div>
 
               <div className="grid gap-3">

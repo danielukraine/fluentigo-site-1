@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Check, Info, Star, Sparkles } from "lucide-react";
+import { Check, Circle, Info, Star, Sparkles, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { useBookingDialog } from "@/components/booking/BookingDialogProvider";
 import { useShouldReduceMotion } from "@/hooks/use-motion-preferences";
@@ -165,12 +165,13 @@ const PricingSection = () => {
         <div className="inline-flex rounded-2xl bg-muted/60 backdrop-blur-sm p-1.5 mb-12 ring-1 ring-border/30">
           <button
             onClick={() => setActiveTab("standard")}
-            className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-100 ${
+            className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-100 flex items-center gap-1.5 ${
               activeTab === "standard"
                 ? "bg-card shadow-md text-foreground"
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
+            <Circle size={12} className="text-primary/70" />
             Standard
           </button>
           <button
@@ -186,13 +187,14 @@ const PricingSection = () => {
           </button>
           <button
             onClick={() => setActiveTab("intensive")}
-            className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-100 ${
+            className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-100 flex items-center gap-1.5 ${
               activeTab === "intensive"
                 ? "bg-card shadow-md text-foreground ring-1 ring-lime-600/20"
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            Інтенсив
+            <Zap size={14} className="text-lime-700" />
+            Intensive
           </button>
         </div>
 
@@ -260,9 +262,14 @@ const PricingSection = () => {
                             <Star size={12} /> Premium
                           </span>
                         )}
+                        {activeTab === "standard" && (
+                          <span className="flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary">
+                            <Circle size={10} /> Standard
+                          </span>
+                        )}
                         {activeTab === "intensive" && (
-                          <span className="rounded-full bg-lime-500/10 px-2.5 py-1 text-xs font-semibold text-lime-700">
-                            Intensive
+                          <span className="flex items-center gap-1 rounded-full bg-lime-500/10 px-2.5 py-1 text-xs font-semibold text-lime-700">
+                            <Zap size={10} /> Intensive
                           </span>
                         )}
                       </div>
